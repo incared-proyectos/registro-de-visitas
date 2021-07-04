@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-07-2021 a las 21:06:22
+-- Tiempo de generación: 04-07-2021 a las 19:25:18
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 7.4.13
 
@@ -81,6 +81,33 @@ CREATE TABLE `failed_jobs` (
   `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `herramientas`
+--
+
+CREATE TABLE `herramientas` (
+  `id` int(11) NOT NULL,
+  `nombre` varchar(50) DEFAULT NULL,
+  `marca` varchar(50) DEFAULT NULL,
+  `serial` varchar(50) DEFAULT NULL,
+  `visita_id` int(11) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `herramientas`
+--
+
+INSERT INTO `herramientas` (`id`, `nombre`, `marca`, `serial`, `visita_id`, `created_at`, `updated_at`) VALUES
+(38, 'Laptop', 'asus', '8797879', 23, '2021-07-04 01:17:17', '2021-07-04 01:17:17'),
+(39, '1111111111', '1111111111', '111111', 25, '2021-07-04 01:19:27', '2021-07-04 01:19:27'),
+(40, '111122222222222', '22222222', '22222222', 25, '2021-07-04 01:19:27', '2021-07-04 01:19:27'),
+(41, '33333', '3333333333', '333333', 25, '2021-07-04 01:19:27', '2021-07-04 01:19:27'),
+(44, '1111111111', '1111111', '1111111', 26, '2021-07-04 17:08:34', '2021-07-04 17:08:34');
 
 -- --------------------------------------------------------
 
@@ -239,6 +266,7 @@ CREATE TABLE `visitas` (
   `hora_salida` varchar(15) DEFAULT NULL,
   `srcfoto` varchar(50) DEFAULT NULL,
   `itemsjson` text DEFAULT NULL,
+  `herramientastatus` varchar(2) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -247,10 +275,15 @@ CREATE TABLE `visitas` (
 -- Volcado de datos para la tabla `visitas`
 --
 
-INSERT INTO `visitas` (`id`, `nombre`, `dni`, `motivo`, `lugar`, `fecha`, `hora_entrada`, `hora_salida`, `srcfoto`, `itemsjson`, `created_at`, `updated_at`) VALUES
-(6, 'Pedro Avila', 25129301, NULL, 'adsadasdasdasdasdasdads', '2020-10-15', '07:50:38 PM', '03:40:03 PM', NULL, '{\"entidad\":{\"id\":\"24\",\"name\":\"LEYVA VALENZUELA MILAGROS SARITAA\"},\"motivo\":{\"id\":\"1\",\"name\":\"asdasdad\"},\"empleado\":{\"id\":\"3\",\"name\":\"Juan Valdez\"},\"sede\":{\"id\":\"6\",\"name\":\"Edificio 5\"},\"oficina\":{\"id\":\"2\",\"name\":\"central2\"}}', '2021-07-01 15:40:03', '2021-07-01 19:40:03'),
-(8, 'Pedro Avila', 13596897, NULL, 'adsadasdasdasdasdasdads', '2021-02-25', '11:39:39 PM', '06:34:17 PM', NULL, '{\"entidad\":{\"id\":\"23\",\"name\":\"ESPINOZA ORIHUELA PEDRO MIGUEL\"},\"motivo\":{\"id\":\"1\",\"name\":\"asdasdad\"},\"empleado\":{\"id\":\"1\",\"name\":\"Jack so\"},\"sede\":{\"id\":\"4\",\"name\":\"SCHELL\"},\"oficina\":{\"id\":\"0\",\"name\":\"-\"}}', '2021-07-01 14:21:00', '2021-06-30 22:34:17'),
-(20, 'pruebas pruebas 2', 464645654, NULL, 'asdasd', '2021-07-02', '07:01:36 PM', NULL, '4646456541625252496.jpg', '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"1\",\"name\":\"Pedro\"},\"sede\":{\"id\":\"1\",\"name\":\"Sede en Principal peru\"},\"oficina\":{\"id\":\"3\",\"name\":\"oficina1\"},\"motivo\":{\"id\":\"1\",\"name\":\"motivo 1\"}}', '2021-07-02 23:01:36', '2021-07-02 23:01:36');
+INSERT INTO `visitas` (`id`, `nombre`, `dni`, `motivo`, `lugar`, `fecha`, `hora_entrada`, `hora_salida`, `srcfoto`, `itemsjson`, `herramientastatus`, `created_at`, `updated_at`) VALUES
+(6, 'Pedro Avila', 25129301, NULL, 'adsadasdasdasdasdasdads', '2020-10-15', '07:50:38 PM', '03:40:03 PM', NULL, '{\"entidad\":{\"id\":\"24\",\"name\":\"LEYVA VALENZUELA MILAGROS SARITAA\"},\"motivo\":{\"id\":\"1\",\"name\":\"asdasdad\"},\"empleado\":{\"id\":\"3\",\"name\":\"Juan Valdez\"},\"sede\":{\"id\":\"6\",\"name\":\"Edificio 5\"},\"oficina\":{\"id\":\"2\",\"name\":\"central2\"}}', '0', '2021-07-01 15:40:03', '2021-07-01 19:40:03'),
+(8, 'Pedro Avila', 13596897, NULL, 'adsadasdasdasdasdasdads', '2021-02-25', '11:39:39 PM', '06:34:17 PM', NULL, '{\"entidad\":{\"id\":\"23\",\"name\":\"ESPINOZA ORIHUELA PEDRO MIGUEL\"},\"motivo\":{\"id\":\"1\",\"name\":\"asdasdad\"},\"empleado\":{\"id\":\"1\",\"name\":\"Jack so\"},\"sede\":{\"id\":\"4\",\"name\":\"SCHELL\"},\"oficina\":{\"id\":\"0\",\"name\":\"-\"}}', '0', '2021-07-01 14:21:00', '2021-06-30 22:34:17'),
+(20, 'pruebas pruebas 2', 464645654, NULL, 'asdasd', '2021-07-02', '07:01:36 PM', '05:47:49 PM', '4646456541625252496.jpg', '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"1\",\"name\":\"Pedro\"},\"sede\":{\"id\":\"1\",\"name\":\"Sede en Principal peru\"},\"oficina\":{\"id\":\"3\",\"name\":\"oficina1\"},\"motivo\":{\"id\":\"1\",\"name\":\"motivo 1\"}}', '0', '2021-07-03 17:47:49', '2021-07-03 21:47:49'),
+(21, 'pruebas 3030', 454654654, NULL, 'asdasdasdasd', '2021-07-03', '06:29:15 PM', NULL, '4546546541625336955.jpg', '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"1\",\"name\":\"Pedro\"},\"sede\":{\"id\":\"1\",\"name\":\"Sede en Principal peru\"},\"oficina\":{\"id\":\"4\",\"name\":\"oficina2\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo2\"}}', '0', '2021-07-03 22:29:15', '2021-07-03 22:29:15'),
+(23, 'Pruebas 90 99', 25129669, NULL, '123123123', '2021-07-04', '01:17:17 AM', NULL, NULL, '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"1\",\"name\":\"Pedro\"},\"sede\":{\"id\":\"1\",\"name\":\"Sede en Principal peru\"},\"oficina\":{\"id\":\"4\",\"name\":\"oficina2\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo2\"}}', 'si', '2021-07-04 17:07:49', '2021-07-04 21:07:49'),
+(24, 'asdasdoo', 5646456, NULL, 'asdasd', '2021-07-04', '01:18:25 AM', NULL, NULL, '{\"entidad\":{\"id\":0,\"name\":\"-\"},\"empleado\":{\"id\":0,\"name\":\"-\"},\"sede\":{\"id\":0,\"name\":\"-\"},\"oficina\":{\"id\":0,\"name\":\"-\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo2\"}}', 'no', '2021-07-04 16:22:50', '2021-07-04 20:22:50'),
+(25, 'Pedro2', 123123123, NULL, '12313', '2021-07-04', '01:19:27 AM', NULL, '1231231231625361567.jpg', '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"1\",\"name\":\"Pedro\"},\"sede\":{\"id\":\"1\",\"name\":\"Sede en Principal peru\"},\"oficina\":{\"id\":\"3\",\"name\":\"oficina1\"},\"motivo\":{\"id\":\"1\",\"name\":\"motivo 1\"}}', 'si', '2021-07-04 05:19:27', '2021-07-04 05:19:27'),
+(26, 'Pruebas Pedro Pancho', 12123123, NULL, '123123123', '2021-07-04', '05:08:34 PM', NULL, NULL, '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"2\",\"name\":\"Armando\"},\"sede\":{\"id\":\"1\",\"name\":\"Sede en Principal peru\"},\"oficina\":{\"id\":\"3\",\"name\":\"oficina1\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo2\"}}', 'si', '2021-07-04 21:08:34', '2021-07-04 21:08:34');
 
 --
 -- Índices para tablas volcadas
@@ -275,6 +308,12 @@ ALTER TABLE `entidad`
 ALTER TABLE `failed_jobs`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`);
+
+--
+-- Indices de la tabla `herramientas`
+--
+ALTER TABLE `herramientas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `migrations`
@@ -351,6 +390,12 @@ ALTER TABLE `failed_jobs`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `herramientas`
+--
+ALTER TABLE `herramientas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+
+--
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
@@ -390,7 +435,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `visitas`
 --
 ALTER TABLE `visitas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
