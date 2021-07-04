@@ -20,6 +20,13 @@ label:not(.form-check-label):not(.custom-file-label) {
 	font-weight: 600 !important;
 	font-size: 14px;
 }
+th{
+	font-weight: 500;
+	font-size: 13px;
+}
+td{
+	font-size: 12px;
+}
 @charset "UTF-8";
 table.dataTable {
   clear: both;

@@ -17,11 +17,12 @@ class Visita extends Model
         'hora_entrada',
         'hora_salida',
         'srcfoto',
+        'herramientastatus',
         'itemsjson'
     ];
     /*Map para visitas de este modo sacamos  el nombre de las variables que estan como tipo json, sea entiendad,motivo, oficina,empleados*/
     public function mapvisita($request){
-        $collect =  Visita::all();
+        $collect =  Visita::all() ; 
         if (!empty($request->input('fechadesde')) OR !empty($request->input('fechahasta'))) {
             $fechadesde = $request->input('fechadesde');
             $fechahasta = $request->input('fechahasta');
@@ -37,5 +38,26 @@ class Visita extends Model
             }
         });
         return $collect;
+    }
+
+     /*Map para visitas de este modo sacamos  el nombre de las variables que estan como tipo json, sea entiendad,motivo, oficina,empleados*/
+    public function mapvisitaById($id){
+        $item =  Visita::with('herramientas')->find($id); 
+        if (!empty($item->itemsjson)) {
+        
+            $json = json_decode($item->itemsjson);
+            $item->itemsjson = $json;
+            /*foreach ($json as $key => $val) {
+                $keyid = $key.'_id';
+                $item->itemsjson = $val
+            }*/
+        }
+        return $item;
+    }
+
+
+    public function herramientas()
+    {
+        return $this->hasMany('App\Models\Herramienta');
     }
 }

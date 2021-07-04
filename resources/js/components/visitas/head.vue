@@ -14,7 +14,13 @@
   				<br>
 				<select class="form-control jsoninput"  data-name="entidad" data-live-search="true" @change="jsonform"  required="" >
   					<option value="">Seleccionar Entidad...</option>
-  					<option v-for="item in entidad"  :key="item.id" :data-name="item.nsocial" :data-id="item.id">
+  					<option v-for="item in entidad"  
+  					:key="item.id" 
+  					:data-name="item.nsocial" 
+  					:data-id="item.id"
+					:selected="item.id == jsonselects.entidad.id"
+
+  					>
   						{{item.nombres}} || {{item.apellidos}}
   					</option>
   				</select>
@@ -26,7 +32,13 @@
   				<label for="" class="text-uppercase">Motivo</label>
   				<select name="motivo" class="form-control jsoninput" data-name="motivo"   data-live-search="true"  @change="jsonform" required="" >
   					<option value="">Seleccionar Motivo...</option>
-  					<option v-for="item in motivos"  :key="item.id" :data-name="item.motivo" :data-id="item.id">
+  					<option v-for="item in motivos"  
+  					:key="item.id"
+  					:data-name="item.motivo" 
+  					:data-id="item.id"
+  					:selected="item.id == jsonselects.motivo.id"
+
+  					>
   						{{item.motivo}}
   					</option>
   				</select>
@@ -35,7 +47,13 @@
   				<label for="" class="text-uppercase">Empleado</label>
   				<select name="empleado" class="form-control jsoninput" data-name="empleado"   data-live-search="true" @change="jsonform" required="">
   					<option value="">Seleccionar Empleado...</option>
-  					<option v-for="item in empleados" :key="item.id" :data-name="item.empleado" :data-id="item.id">
+  					<option v-for="item in empleados" 
+  					:key="item.id" 
+  					:data-name="item.empleado" 
+  					:data-id="item.id"
+  					:selected="item.id == jsonselects.empleado.id"
+
+  					>
   						{{item.empleado}}
   					</option>
   				</select>
@@ -44,7 +62,11 @@
   				<label for="" class="text-uppercase">Sedes</label>
   				<select name="sede" class="form-control jsoninput"  data-name="sede" data-live-search="true" @change="jsonform" required="">
   					<option value="">Seleccionar Sede...</option>
-  					<option v-for="item in sedes"   :key="item.id" :data-name="item.sedes" :data-id="item.id">
+  					<option v-for="item in sedes"   
+  					:key="item.id" 
+  					:data-name="item.sedes" 
+  					:data-id="item.id"
+  					:selected="item.id == jsonselects.sede.id">
   						{{item.sedes}}
   					</option>
   				</select>
@@ -58,7 +80,11 @@
   			<div class="col-6">
   				<select name="" id="" class="form-control jsoninput" data-name="oficina" data-live-search="true" @change="jsonform" required="">
   					<option value="">SELECCIONAR OFICINA..</option>
-  					<option v-for="item in oficinas" :key="item.id" :data-name="item.oficina" :data-id="item.id">
+  					<option v-for="item in oficinas" 
+  					:key="item.id" 
+  					:data-name="item.oficina" 
+  					:data-id="item.id"
+  					:selected="item.id == jsonselects.oficina.id">
   						{{item.oficina}}
   					</option>
   				</select>
@@ -69,7 +95,7 @@
 </template>
 <script>
 	export default {
-		props:['form'],
+		props:['form','type'],
 		data: function() {
 	    	return {
 
@@ -79,17 +105,11 @@
 	    		sedes:null,
 	    		oficinas:null,
 
-	    		jsoninputs:{
-	    			entidad:{name:'-'},
-	    			empleado:{name:'-'},
-	    			sede:{name:'-'},
-	    			oficina:{name:'-'},
-	    			motivo:{name:'-'}
-	    		}
 	    	}
 	    },
 	    mounted(){
 			this.getSelects()
+
 		},
 		methods:{
 			async getSelects() {
@@ -106,17 +126,23 @@
 			},
 			jsonform(event){
 				let nameinput = $(event.currentTarget).attr('data-name');
-				this.jsoninputs[nameinput] = {
+								
+				this.form.itemsjson[nameinput] = {
 					id:$(event.currentTarget).find(':selected').attr('data-id'),
 					name:$(event.currentTarget).find(':selected').attr('data-name')
 				}
-				this.$emit('itemjson', this.jsoninputs)
 			}	
 		}, 
+		computed:{
+			jsonselects(){
+
+				return this.form.itemsjson
+			}
+		},
 		watch: {
 		    entidad () {
 		      	$(function () {
-	             $('select').selectpicker('refresh');
+	              setTimeout(function(){  $('select').selectpicker('refresh'); }, 300);
 	         	})
 		    }
 	  },

@@ -2,9 +2,20 @@
 	<div>
 		<div class="row justify-content-center m-2" v-if="form.srcfoto !== null">
 			<div class="col-3">
-				<div class="alert alert-info" ><b><i class="fas fa-camera"></i> 1 imagen tomada</b></div>
+				<div class="alert alert-info" >
+					<b><i class="fas fa-camera"></i> 1 imagen tomada</b>   
+					<a href="#" v-if="editform" @click.prevent="showimgsave"> <b>Ver imagen guardada</b></a>
+				</div>
 			</div>
 		</div>
+		<modal 
+		:showModal="showModal"
+		:key="componentKey">
+			<template v-slot:header>
+			    Imagen de la visita</b>
+			</template>
+	    	<img :src="`${srcmodal}`" alt="" class="img-fluid w-100"/>
+	    </modal>
 		<input type="hidden" :value="form.srcfoto"  @input="$emit('srcfoto', $event.target.value)">
 		<div class="row mt-2">
 	        <div class="col-12 text-center"> 
@@ -59,11 +70,18 @@
 	</div>
 </template>
 <script>
+	import Modal from '@/components/Modal.vue';
+
 	export default {
-		props:['form'],
+		props:['form','editform'],
+		components:{
+			Modal
+		},
 		data: function() {
 	    	return {
 	    		box1:null,
+	    		showModal:false,
+	    		componentKey:0,
 	    		//src_foto:null,
 	    	}
 	    },
@@ -73,9 +91,17 @@
 	    	},
 	    	videstatus(){
 	    		return this.box1 == null ? 'block' : 'none';
+	    	},
+	    	srcmodal(){
+	    		let lengthsrc = this.form.srcfoto !== null ? this.form.srcfoto.length : ''
+	    		return  lengthsrc < 100  ? `${base_path_asset}storage/Visitas/${this.form.srcfoto}` : ''
 	    	}
 	    },	
 		methods:{
+			showimgsave(){
+				this.showModal = true
+				this.componentKey +=1
+			},
 			captureclick(){
 
 				let video = document.getElementById('video');

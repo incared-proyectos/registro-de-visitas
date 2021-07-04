@@ -191,11 +191,23 @@
 	            let instance = new actions({
 	                propsData: {
 	                	id:rowData.id,
-	                	url_eliminar:route('visitas.delete')
+	                	url_eliminar:route('visitas.delete'),
 	                },
 	            });
 	            instance.$mount();
-	        
+	            let me = this;
+	        	instance.$on('edit_emit', function(event) {
+
+	        		me.$router.push(`visitas/edit/${rowData.id}`) // -> /user
+
+	        	})
+	        	instance.$on('view', function(event) {
+
+	        		me.$router.push(`visitas/view/${rowData.id}`) // -> /user
+
+	        	})
+
+
 	            $(cell).empty().append(instance.$el);
 	            
 		   	},

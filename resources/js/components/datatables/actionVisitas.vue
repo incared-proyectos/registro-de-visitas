@@ -7,7 +7,7 @@
         <button  @click="delete_action" class="btn btn-danger btn-sm "  title="Eliminar"  >
             <slot><i class="fas fa-trash"></i></slot>
         </button>
-        <button  @click="view" class="btn btn-info btn-sm m-1"  title="Visualizar"  >
+        <button  @click="viewV" class="btn btn-info btn-sm m-1"   title="Visualizar"  >
             <slot><i class="fas fa-eye"></i></slot>
         </button>
     </div>
@@ -18,8 +18,11 @@
         props: ['id','url_eliminar'],
         methods: {
           edit(event) {
-            //this.$parent.$router.push(this.url_edit)
-
+            this.$emit("edit_emit");
+          },
+          viewV(event){
+            console.log('eventclick')
+            this.$emit('view')
           },
           delete_action(event) {
             //this.$parent.$router.push(this.url_edit)

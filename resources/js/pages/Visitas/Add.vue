@@ -25,13 +25,21 @@
 		              		<!--Inputs selects y otros en un componente llamado head-form-->
 		              		<head-form 
 			              		:form="form"
-
+			              		type="create"
 			              		@nombre="form.nombre = $event"
 								@dni="form.dni = $event"
+
+
 								@itemjson="form.itemsjson = $event"
 								@lugar="form.lugar = $event"
 		              		/>
+		              		<input-dynamic
+		              			:form="form"
+		              			:inputs="inputs"
+		              			@inputarray="inputs = $event"
+								@herramientastatus="form.herramientastatus = $event"
 
+		              		/>
 		              		<!--Componente para tomar la foto mediante un modal -->
 		              		<foto-modal
 		              		:form="form"
@@ -43,7 +51,6 @@
 		              			</div>
 		              		</div>
 		              	</form>
-
 		              </div>
 		            </div>
 		     	</div>
@@ -58,12 +65,13 @@
 	import HeaderTitle from "@/components/HeaderTitle.vue"
 	import HeadForm from "@/components/visitas/head.vue"
 	import FotoModal from "@/components/visitas/FotoModal.vue"
+	import InputDynamic from "@/components/visitas/InputDynamic.vue"
 	import ErrorsForm from "@/components/ValidationErrors.vue"
 	import successMessage from '@/components/SuccessMessage.vue';
 
 	export default {
 		components:{
-			SectionContent,HeaderTitle,HeadForm,FotoModal,successMessage,ErrorsForm
+			SectionContent,HeaderTitle,HeadForm,FotoModal,successMessage,ErrorsForm,InputDynamic
 		},
 		data: function() {
 			return {
@@ -71,9 +79,18 @@
 					nombre:'',
 					dni:'',
 					lugar:'',
+					herramientastatus:'',
 					srcfoto:null,
-					itemsjson:null,
+					itemsjson:{
+						entidad:{id:0,name:'-'},
+		    			empleado:{id:0,name:'-'},
+		    			sede:{id:0,name:'-'},
+		    			oficina:{id:0,name:'-'},
+		    			motivo:{id:0,name:'-'}
+	    			},
 				},
+				inputs:[],
+
 				validationForm:[],
 	    		message_success:'',
 	    		fullPage: false
@@ -85,7 +102,7 @@
 	    		return this.$loading.show({
                   // Optional parameters
                   container: this.fullPage ? null : this.$refs.formContainer,
-                  canCancel: false,
+                  canCancel: true,
                   onCancel: this.onCancel,
                 });
 	    	},
@@ -108,7 +125,7 @@
 				let loader = this.loader();
 	    		let me = this;
 	    		this.message_success = ''
-
+	    		this.form.inputs = this.inputs
 				axios.post(route('visitas.create'),this.form)
 			  	.then(function (response) {
 

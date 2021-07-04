@@ -28,7 +28,7 @@ class HomeController extends Controller
     }
     public function pruebas(){
         $visita = new Visita();
-        $visita->mapvisita(Visita::all());
+        $visita->mapvisitaById(6);
         
     }
 }

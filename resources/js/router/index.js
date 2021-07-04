@@ -27,6 +27,14 @@ let routes = [
               path: 'create',
               component: require('@/pages/Visitas/Add.vue').default
             },
+            {
+              path: 'edit/:id',
+              component: require('@/pages/Visitas/Edit.vue').default
+            },
+            {
+              path: 'view/:id',
+              component: require('@/pages/Visitas/View.vue').default
+            },
   
         ]
     },

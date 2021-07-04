@@ -10,6 +10,7 @@ use App\Models\Entidad;
 use App\Models\Motivo;
 use App\Models\Sede;
 use App\Models\Oficina;
+use App\Models\Herramienta;
 use App\Models\Empleado;
 use Storage;
 use DB;
@@ -105,23 +106,25 @@ class VisitaController extends Controller
             $all['hora_entrada'] = date('h:i:s A');
             $all['itemsjson'] = json_encode($all['itemsjson']);
             $table = new Visita();
-
+          
+       
 
             $table->fill($all)->save();
-            /*
-            if ($request->has('herramienta')) {
-               $herramienta = $request->all();
-                if ($herramienta['herramienta'] != 'no') {                
-                    for ($i=0; $i <count($herramienta['htrabajo']) ; $i++) { 
-                        $this->table->nombre = $herramienta['htrabajo'][$i];
-                        $this->table->marca = $herramienta['mtrabajo'][$i];
-                        $this->table->serial = $herramienta['strabajo'][$i];
-                        $this->table->insert_utilitarios();
-                    }
+            if ($all['herramientastatus'] == 'si') {  
+                if (count($all['inputs']) > 0) {               
+                    $visitalast = Visita::orderBy('id','DESC')->first();
+                    foreach ($all['inputs'] as $key => $val) {
+                        $herramienta = new Herramienta();
+                        $herramienta->nombre = $val['value_herramienta'];
+                        $herramienta->marca = $val['value_marca'];
+                        $herramienta->serial = $val['value_serial'];
+                        $herramienta->visita_id = $visitalast->id;
+                        $herramienta->save();
+                    }  
                 }
             }
-            */
-            $request->session()->flash('create', 'Registro con el nombre '.$all['nombre'].' agregado con exito!');
+        
+            $request->session()->flash('message_success', 'Registro con el nombre '.$all['nombre'].' agregado con exito!');
             return response()->json(['success'=>'Registro agregado con exito','url'=>url('visitas')]);
         }
     }
@@ -155,7 +158,8 @@ class VisitaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $visita = new Visita();
+        return $visita->mapvisitaById($id);
     }
 
     /**
@@ -165,9 +169,79 @@ class VisitaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $all = $request->all();
+        $validator = Validator::make($request->all(),[
+            'nombre' => 'required',
+            //'dni' => 'required|numeric|unique:visitas',
+            'itemsjson' => 'required'
+        ]);
+        if ($validator->fails()) {
+           return response()->json(['error'=>$validator->errors()->all()]);
+        }else{
+            $visita = Visita::find($all['id']);
+            if ($request->has('src_foto')) {
+              if(!Storage::disk('public_uploads')->has('Visitas')){
+                  Storage::disk('public_uploads')->makeDirectory('Visitas');
+              }
+              if (Storage::disk('public_uploads')->exists('Visitas/'.$visita->srcfoto)) {
+                  Storage::disk('public_uploads')->delete('Visitas/'.$visita->srcfoto);
+              }
+                $img = $all['srcfoto'];
+                $img = str_replace('data:image/png;base64,', '', $img);
+                $img = str_replace(' ', '+', $img);
+                $data = base64_decode($img);
+                $im = imagecreatefromstring($data);  //convertir text a imagen
+                if ($im !== false) {
+                    imagejpeg($im, public_path().'/storage/Visitas/'.$all['dni'].time().'.jpg'); //guardar a server 
+
+                    imagedestroy($im); //liberar memoria  
+                    $all['srcfoto'] = $all['dni'].time().'.jpg';
+                }
+            }
+            $visita->fill($all)->save();
+            if ($all['herramientastatus'] == 'si') {  
+                if (count($all['inputs']) > 0) {               
+                    foreach ($all['inputs'] as $key => $val) {
+                        $herramienta = new Herramienta();
+                        $herramienta->nombre = $val['value_herramienta'];
+                        $herramienta->marca = $val['value_marca'];
+                        $herramienta->serial = $val['value_serial'];
+                        $herramienta->visita_id = $all['id'];
+                        $herramienta->save();
+                    }  
+                }
+                if (count($all['herramientas']) > 0) {
+                    foreach ($all['herramientas'] as $key => $val) {
+                        $herramienta = Herramienta::find($val['id']);
+                        $herramienta->nombre = $val['nombre'];
+                        $herramienta->marca = $val['marca'];
+                        $herramienta->serial = $val['serial'];
+                        $herramienta->visita_id = $all['id'];
+                        $herramienta->save();
+                    }  
+                }
+            }
+            /*
+        
+          if ($request->has('herramienta')) {
+              $herramienta = $request->all();
+              if ($herramienta['herramienta'] != 'no' AND $request->has('htrabajo')) {    
+                  for ($i=0; $i <count($herramienta['htrabajo']) ; $i++) { 
+                      $this->table->nombre = $herramienta['htrabajo'][$i];
+                      $this->table->marca = $herramienta['mtrabajo'][$i];
+                      $this->table->serial = $herramienta['strabajo'][$i];
+                      $this->table->idherramienta = (!empty($herramienta['idherramienta'][$i])) ? $herramienta['idherramienta'][$i] : false;
+                      $this->table->id = $id;
+                      $this->table->update_utilitarios($id);
+                  }
+              }
+          }*/
+          $request->session()->flash('message_success', 'Registro actualizado con exito!');
+
+          return response()->json(['success'=>'Registro actualizado con exito']);
+        }
     }
 
     /**
