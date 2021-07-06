@@ -18,7 +18,8 @@ class Visita extends Model
         'hora_salida',
         'srcfoto',
         'herramientastatus',
-        'itemsjson'
+        'itemsjson',
+        'fecha_programada'
     ];
     /*Map para visitas de este modo sacamos  el nombre de las variables que estan como tipo json, sea entiendad,motivo, oficina,empleados*/
     public function mapvisita($request){

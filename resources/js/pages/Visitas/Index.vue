@@ -86,6 +86,10 @@
 			        	data:'fecha',
 			        },
 			        {
+			        	data:'fecha_programada',
+			        	title:'Fecha.P'
+			        },
+			        {
 			        	data:'nombre',
 			        },
 			        {
@@ -183,32 +187,37 @@
 		        
 		            $(cell).empty().append(instance.$el);
 	            }
+
 	    	},
 		   	createdCellAction(cell, cellData, rowData) {
-	          	$(cell).empty();
-	            let actions = Vue.extend(require('@/components/datatables/actionVisitas.vue').default);
 
-	            let instance = new actions({
-	                propsData: {
-	                	id:rowData.id,
-	                	url_eliminar:route('visitas.delete'),
-	                },
-	            });
-	            instance.$mount();
-	            let me = this;
-	        	instance.$on('edit_emit', function(event) {
+		   		if (this.$can('Administrator')) {
 
-	        		me.$router.push(`visitas/edit/${rowData.id}`) // -> /user
+		          	$(cell).empty();
+		            let actions = Vue.extend(require('@/components/datatables/actionVisitas.vue').default);
 
-	        	})
-	        	instance.$on('view', function(event) {
+		            let instance = new actions({
+		                propsData: {
+		                	id:rowData.id,
+		                	url_eliminar:route('visitas.delete'),
+		                },
+		            });
+		            instance.$mount();
+		            let me = this;
+		        	instance.$on('edit_emit', function(event) {
 
-	        		me.$router.push(`visitas/view/${rowData.id}`) // -> /user
+		        		me.$router.push(`visitas/edit/${rowData.id}`) // -> /user
 
-	        	})
+		        	})
+		        	instance.$on('view', function(event) {
+
+		        		me.$router.push(`visitas/view/${rowData.id}`) // -> /user
+
+		        	})
 
 
-	            $(cell).empty().append(instance.$el);
+		            $(cell).empty().append(instance.$el);
+	        	}
 	            
 		   	},
 		   	createdCellActionView(cell, cellData, rowData) {

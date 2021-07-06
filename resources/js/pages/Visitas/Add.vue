@@ -28,8 +28,7 @@
 			              		type="create"
 			              		@nombre="form.nombre = $event"
 								@dni="form.dni = $event"
-
-
+								@fechaprogramada="form.fecha_programada = $event"
 								@itemjson="form.itemsjson = $event"
 								@lugar="form.lugar = $event"
 		              		/>
@@ -81,6 +80,7 @@
 					lugar:'',
 					herramientastatus:'',
 					srcfoto:null,
+					fecha_programada:null,
 					itemsjson:{
 						entidad:{id:0,name:'-'},
 		    			empleado:{id:0,name:'-'},

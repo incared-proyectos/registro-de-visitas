@@ -43,3 +43,30 @@ Route::group(['prefix'=>'herramientas','as'=>'herramientas.'], function(){
     Route::post('/delete', [App\Http\Controllers\HerramientaController::class, 'destroy'])->name('delete')->middleware('auth:sanctum');
 
 });
+
+
+//MODULE OFICINAS 
+Route::group(['prefix'=>'oficinas','as'=>'oficinas.'], function(){
+    Route::get('/', [App\Http\Controllers\OficinaController::class, 'index'])->name('index')->middleware('auth:sanctum');
+    //POST
+    Route::post('/save', [App\Http\Controllers\OficinaController::class, 'store'])->name('save')->middleware('auth:sanctum');
+
+    Route::post('/update', [App\Http\Controllers\OficinaController::class, 'update'])->name('update')->middleware('auth:sanctum');
+
+    Route::post('/delete', [App\Http\Controllers\OficinaController::class, 'destroy'])->name('delete')->middleware('auth:sanctum');
+
+});
+
+//MODULE USERS 
+Route::group(['prefix'=>'users','as'=>'users.'], function(){
+
+    Route::get('/', [App\Http\Controllers\UserController::class, 'index'])->name('index')->middleware('auth:sanctum');
+    Route::get('/rolesall', [App\Http\Controllers\UserController::class, 'rolesAll'])->name('rolesall')->middleware('auth:sanctum');
+    Route::get('/edit/{id}', [App\Http\Controllers\UserController::class, 'edituser'])->name('edituser')->middleware('auth:sanctum');
+
+    //POST
+    Route::post('/save', [App\Http\Controllers\UserController::class, 'store'])->name('save')->middleware('auth:sanctum');
+    Route::post('/update', [App\Http\Controllers\UserController::class, 'update'])->name('update')->middleware('auth:sanctum');
+    Route::post('/delete', [App\Http\Controllers\UserController::class, 'destroy'])->name('delete')->middleware('auth:sanctum');
+
+});

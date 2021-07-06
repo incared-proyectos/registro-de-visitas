@@ -49,12 +49,12 @@
   					<option value="">Seleccionar Empleado...</option>
   					<option v-for="item in empleados" 
   					:key="item.id" 
-  					:data-name="item.empleado" 
+  					:data-name="item.name" 
   					:data-id="item.id"
   					:selected="item.id == jsonselects.empleado.id"
 
   					>
-  						{{item.empleado}}
+  						{{item.name}}
   					</option>
   				</select>
   			</div>
@@ -74,10 +74,10 @@
   		</div>
   		<hr>
   		<div class="row">
-  			<div class="col-6">
+  			<div class="col-4">
   				<input type="text" :value="form.lugar"  @input="$emit('lugar', $event.target.value)" class="form-control" placeholder="Lugar de reunion">
   			</div>
-  			<div class="col-6">
+  			<div class="col-4">
   				<select name="" id="" class="form-control jsoninput" data-name="oficina" data-live-search="true" @change="jsonform" required="">
   					<option value="">SELECCIONAR OFICINA..</option>
   					<option v-for="item in oficinas" 
@@ -89,12 +89,21 @@
   					</option>
   				</select>
   			</div>
+  			<div class="col-4 text-center m-auto">
+  				<VueDatePicker v-model="form.fecha_programada" format="YYYY-MM-DD"  clearable placeholder="Fecha programada: YYYY-MM-DD"></VueDatePicker>
+  			</div>
   		</div>
   		<hr>
 	</div>
 </template>
 <script>
+	import { VueDatePicker } from '@mathieustan/vue-datepicker';
+	import '@mathieustan/vue-datepicker/dist/vue-datepicker.min.css';
+
 	export default {
+		components:{
+			VueDatePicker
+		},
 		props:['form','type'],
 		data: function() {
 	    	return {
@@ -126,7 +135,6 @@
 			},
 			jsonform(event){
 				let nameinput = $(event.currentTarget).attr('data-name');
-								
 				this.form.itemsjson[nameinput] = {
 					id:$(event.currentTarget).find(':selected').attr('data-id'),
 					name:$(event.currentTarget).find(':selected').attr('data-name')
@@ -135,7 +143,6 @@
 		}, 
 		computed:{
 			jsonselects(){
-
 				return this.form.itemsjson
 			}
 		},

@@ -33,6 +33,7 @@
 
             let me = this;
 
+            console.log(this.url_delete);
             swal.fire({
               title:'Estas seguro?',
               text: "Esta accción es irreversible",

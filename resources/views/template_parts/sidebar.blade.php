@@ -50,7 +50,22 @@
             </p>
           </router-link>
         </li>
- 
+        <li class="nav-item">
+          <router-link  to="/oficinas"  class="nav-link">
+            <i class="nav-icon fas fa-laptop-house"></i>
+            <p>
+              Oficinas
+            </p>
+          </router-link>
+        </li>
+        <li class="nav-item">
+          <router-link  to="/users"  class="nav-link">
+            <i class="nav-icon fas fa-user"></i>
+            <p>
+              Usuarios
+            </p>
+          </router-link>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

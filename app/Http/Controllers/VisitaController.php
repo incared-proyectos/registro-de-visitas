@@ -11,7 +11,7 @@ use App\Models\Motivo;
 use App\Models\Sede;
 use App\Models\Oficina;
 use App\Models\Herramienta;
-use App\Models\Empleado;
+use App\Models\User;
 use Storage;
 use DB;
 use Auth;
@@ -29,7 +29,7 @@ class VisitaController extends Controller
         $table = Datatables::of($visita->mapvisita($request));
 
         $table->addColumn('action', function($row){
-            return 'delete';
+            return '';
         })->addColumn('hora_salida', function($row){
             if (!empty($row['hora_salida'])) {
                 return $row['hora_salida'];
@@ -49,7 +49,7 @@ class VisitaController extends Controller
             'motivos'=>Motivo::all(),
             'sedes'=>Sede::all(),
             'oficinas'=>Oficina::all(),
-            'empleados'=>Empleado::all(),
+            'empleados'=>User::all(),
         ];
     }
     /**
@@ -223,21 +223,7 @@ class VisitaController extends Controller
                     }  
                 }
             }
-            /*
-        
-          if ($request->has('herramienta')) {
-              $herramienta = $request->all();
-              if ($herramienta['herramienta'] != 'no' AND $request->has('htrabajo')) {    
-                  for ($i=0; $i <count($herramienta['htrabajo']) ; $i++) { 
-                      $this->table->nombre = $herramienta['htrabajo'][$i];
-                      $this->table->marca = $herramienta['mtrabajo'][$i];
-                      $this->table->serial = $herramienta['strabajo'][$i];
-                      $this->table->idherramienta = (!empty($herramienta['idherramienta'][$i])) ? $herramienta['idherramienta'][$i] : false;
-                      $this->table->id = $id;
-                      $this->table->update_utilitarios($id);
-                  }
-              }
-          }*/
+
           $request->session()->flash('message_success', 'Registro actualizado con exito!');
 
           return response()->json(['success'=>'Registro actualizado con exito']);
@@ -256,6 +242,7 @@ class VisitaController extends Controller
         $visita = Visita::find($all['id_data']);
         if (!empty($visita)) {
             $visita->delete();
+            Herramienta::where('visita_id',$visita->id)->delete();
         }
 
     }

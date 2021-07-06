@@ -37,8 +37,22 @@
     @else
         @include('template_parts.php_config')
     @endauth
+
+
+
+
+    <!--ROL DEL USUARIO-->
+    <script>
+      @auth
+        window.rolbyuser = "{!! auth()->user()->getRoleNames()[0] !!}";
+      @else
+        window.rolbyuser = '';
+      @endauth
+    </script>
+    <!--///END///-->
+
     <script src="{{ asset('js/app.js') }}" defer></script>
-       
+      
     <script>
         // Validamos si existe los mensajes de session para cargar en una vista  y si es asi lo mostramos
         // Esto es un intento para conbinar las session flash de laravel con vuejs al recargar una pagina 

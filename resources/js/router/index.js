@@ -9,7 +9,13 @@ let routes = [
             requiresAuth: true,
         }
 	},
-    
+    {
+        path: '/oficinas',
+        component: require('@/pages/Oficinas/Index.vue').default,
+        meta: {
+            requiresAuth: true,
+        }
+    },
     {
         path: '/visitas',
         component: require('@/pages/App.vue').default,
@@ -38,6 +44,15 @@ let routes = [
   
         ]
     },
+    {
+        path: '/users',
+        component: require('@/pages/Users/Index.vue').default,
+        meta: {
+            requiresAuth: true,
+        }
+    },
+
+
     
 
 ];

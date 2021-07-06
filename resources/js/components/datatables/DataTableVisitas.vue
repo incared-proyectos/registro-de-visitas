@@ -57,7 +57,11 @@
 
                    columns: this.columns,
                    createdRow(row, data, dataIndex) {
-                      vm.$emit('created-row',$(row).attr( 'id','codenv'+data.id ));
+                    console.log(data.fecha_programada );
+                    if (data.fecha_programada !== null ) {
+                        $(row).css({'background':'#42925b','color':'white'})
+                    }
+                    vm.$emit('created-row',$(row).attr( 'id','codenv'+data.id ));
                    },
                  
                    
