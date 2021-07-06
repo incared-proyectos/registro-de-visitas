@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-07-2021 a las 19:25:18
+-- Tiempo de generación: 06-07-2021 a las 03:49:52
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 7.4.13
 
@@ -103,11 +103,7 @@ CREATE TABLE `herramientas` (
 --
 
 INSERT INTO `herramientas` (`id`, `nombre`, `marca`, `serial`, `visita_id`, `created_at`, `updated_at`) VALUES
-(38, 'Laptop', 'asus', '8797879', 23, '2021-07-04 01:17:17', '2021-07-04 01:17:17'),
-(39, '1111111111', '1111111111', '111111', 25, '2021-07-04 01:19:27', '2021-07-04 01:19:27'),
-(40, '111122222222222', '22222222', '22222222', 25, '2021-07-04 01:19:27', '2021-07-04 01:19:27'),
-(41, '33333', '3333333333', '333333', 25, '2021-07-04 01:19:27', '2021-07-04 01:19:27'),
-(44, '1111111111', '1111111', '1111111', 26, '2021-07-04 17:08:34', '2021-07-04 17:08:34');
+(45, 'laptop', 'dell', 'asdasdasd', 28, '2021-07-05 18:04:37', '2021-07-05 18:04:37');
 
 -- --------------------------------------------------------
 
@@ -129,7 +125,40 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1);
+(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(5, '2021_07_05_142536_create_permission_tables', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `model_has_permissions`
+--
+
+CREATE TABLE `model_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `model_has_roles`
+--
+
+CREATE TABLE `model_has_roles` (
+  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `model_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `model_id` bigint(20) UNSIGNED NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `model_has_roles`
+--
+
+INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
+(1, 'App\\Models\\User', 1),
+(2, 'App\\Models\\User', 2);
 
 -- --------------------------------------------------------
 
@@ -188,6 +217,20 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `permissions`
+--
+
+CREATE TABLE `permissions` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `personal_access_tokens`
 --
 
@@ -201,6 +244,39 @@ CREATE TABLE `personal_access_tokens` (
   `last_used_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `roles`
+--
+
+CREATE TABLE `roles` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `guard_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`, `guard_name`, `created_at`, `updated_at`) VALUES
+(1, 'Administrator', 'web', '2021-07-05 14:26:55', '2021-07-05 14:26:55'),
+(2, 'Empleado', 'web', '2021-07-05 14:26:55', '2021-07-05 14:26:55');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `role_has_permissions`
+--
+
+CREATE TABLE `role_has_permissions` (
+  `permission_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -247,7 +323,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'pedro', 'pedrojam14@gmail.com', NULL, '$2y$10$WKnnxTrEMg/kfr4yLRp5fOoxMdmaqx4.3ldJkBxFhTzTPUyYC90ni', NULL, '2021-07-01 05:07:48', '2021-07-01 05:07:48');
+(1, 'pedro', 'pedrojam14@gmail.com', NULL, '$2y$10$WKnnxTrEMg/kfr4yLRp5fOoxMdmaqx4.3ldJkBxFhTzTPUyYC90ni', NULL, '2021-07-01 05:07:48', '2021-07-01 05:07:48'),
+(2, 'Pedro Jose Avila Moreno', 'pedrojosavila@gmail.com', NULL, '$2y$10$HBrIIaFKJWEhf1UQg4JiveLyLH2nzKEVECK08x9/tyuZRQdem/dti', NULL, '2021-07-05 18:51:36', '2021-07-05 18:51:36');
 
 -- --------------------------------------------------------
 
@@ -262,6 +339,7 @@ CREATE TABLE `visitas` (
   `motivo` text DEFAULT NULL,
   `lugar` varchar(100) DEFAULT NULL,
   `fecha` date NOT NULL,
+  `fecha_programada` date DEFAULT NULL,
   `hora_entrada` varchar(15) DEFAULT NULL,
   `hora_salida` varchar(15) DEFAULT NULL,
   `srcfoto` varchar(50) DEFAULT NULL,
@@ -275,15 +353,9 @@ CREATE TABLE `visitas` (
 -- Volcado de datos para la tabla `visitas`
 --
 
-INSERT INTO `visitas` (`id`, `nombre`, `dni`, `motivo`, `lugar`, `fecha`, `hora_entrada`, `hora_salida`, `srcfoto`, `itemsjson`, `herramientastatus`, `created_at`, `updated_at`) VALUES
-(6, 'Pedro Avila', 25129301, NULL, 'adsadasdasdasdasdasdads', '2020-10-15', '07:50:38 PM', '03:40:03 PM', NULL, '{\"entidad\":{\"id\":\"24\",\"name\":\"LEYVA VALENZUELA MILAGROS SARITAA\"},\"motivo\":{\"id\":\"1\",\"name\":\"asdasdad\"},\"empleado\":{\"id\":\"3\",\"name\":\"Juan Valdez\"},\"sede\":{\"id\":\"6\",\"name\":\"Edificio 5\"},\"oficina\":{\"id\":\"2\",\"name\":\"central2\"}}', '0', '2021-07-01 15:40:03', '2021-07-01 19:40:03'),
-(8, 'Pedro Avila', 13596897, NULL, 'adsadasdasdasdasdasdads', '2021-02-25', '11:39:39 PM', '06:34:17 PM', NULL, '{\"entidad\":{\"id\":\"23\",\"name\":\"ESPINOZA ORIHUELA PEDRO MIGUEL\"},\"motivo\":{\"id\":\"1\",\"name\":\"asdasdad\"},\"empleado\":{\"id\":\"1\",\"name\":\"Jack so\"},\"sede\":{\"id\":\"4\",\"name\":\"SCHELL\"},\"oficina\":{\"id\":\"0\",\"name\":\"-\"}}', '0', '2021-07-01 14:21:00', '2021-06-30 22:34:17'),
-(20, 'pruebas pruebas 2', 464645654, NULL, 'asdasd', '2021-07-02', '07:01:36 PM', '05:47:49 PM', '4646456541625252496.jpg', '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"1\",\"name\":\"Pedro\"},\"sede\":{\"id\":\"1\",\"name\":\"Sede en Principal peru\"},\"oficina\":{\"id\":\"3\",\"name\":\"oficina1\"},\"motivo\":{\"id\":\"1\",\"name\":\"motivo 1\"}}', '0', '2021-07-03 17:47:49', '2021-07-03 21:47:49'),
-(21, 'pruebas 3030', 454654654, NULL, 'asdasdasdasd', '2021-07-03', '06:29:15 PM', NULL, '4546546541625336955.jpg', '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"1\",\"name\":\"Pedro\"},\"sede\":{\"id\":\"1\",\"name\":\"Sede en Principal peru\"},\"oficina\":{\"id\":\"4\",\"name\":\"oficina2\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo2\"}}', '0', '2021-07-03 22:29:15', '2021-07-03 22:29:15'),
-(23, 'Pruebas 90 99', 25129669, NULL, '123123123', '2021-07-04', '01:17:17 AM', NULL, NULL, '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"1\",\"name\":\"Pedro\"},\"sede\":{\"id\":\"1\",\"name\":\"Sede en Principal peru\"},\"oficina\":{\"id\":\"4\",\"name\":\"oficina2\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo2\"}}', 'si', '2021-07-04 17:07:49', '2021-07-04 21:07:49'),
-(24, 'asdasdoo', 5646456, NULL, 'asdasd', '2021-07-04', '01:18:25 AM', NULL, NULL, '{\"entidad\":{\"id\":0,\"name\":\"-\"},\"empleado\":{\"id\":0,\"name\":\"-\"},\"sede\":{\"id\":0,\"name\":\"-\"},\"oficina\":{\"id\":0,\"name\":\"-\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo2\"}}', 'no', '2021-07-04 16:22:50', '2021-07-04 20:22:50'),
-(25, 'Pedro2', 123123123, NULL, '12313', '2021-07-04', '01:19:27 AM', NULL, '1231231231625361567.jpg', '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"1\",\"name\":\"Pedro\"},\"sede\":{\"id\":\"1\",\"name\":\"Sede en Principal peru\"},\"oficina\":{\"id\":\"3\",\"name\":\"oficina1\"},\"motivo\":{\"id\":\"1\",\"name\":\"motivo 1\"}}', 'si', '2021-07-04 05:19:27', '2021-07-04 05:19:27'),
-(26, 'Pruebas Pedro Pancho', 12123123, NULL, '123123123', '2021-07-04', '05:08:34 PM', NULL, NULL, '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"2\",\"name\":\"Armando\"},\"sede\":{\"id\":\"1\",\"name\":\"Sede en Principal peru\"},\"oficina\":{\"id\":\"3\",\"name\":\"oficina1\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo2\"}}', 'si', '2021-07-04 21:08:34', '2021-07-04 21:08:34');
+INSERT INTO `visitas` (`id`, `nombre`, `dni`, `motivo`, `lugar`, `fecha`, `fecha_programada`, `hora_entrada`, `hora_salida`, `srcfoto`, `itemsjson`, `herramientastatus`, `created_at`, `updated_at`) VALUES
+(28, 'asdasd', 465465, NULL, 'asdasd', '2021-07-05', '2021-07-22', '06:04:37 PM', NULL, NULL, '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"1\",\"name\":\"pedro\"},\"sede\":{\"id\":\"1\",\"name\":\"Sede en Principal peru\"},\"oficina\":{\"id\":\"4\",\"name\":\"oficina2\"},\"motivo\":{\"id\":\"1\",\"name\":\"motivo 1\"}}', 'si', '2021-07-05 18:14:02', '2021-07-05 22:14:02'),
+(29, 'Pedro avila', 25129301, NULL, 'asdasd', '2021-07-05', NULL, '06:13:02 PM', NULL, NULL, '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"1\",\"name\":\"pedro\"},\"sede\":{\"id\":\"2\",\"name\":\"Sede en machu pichu\"},\"oficina\":{\"id\":\"4\",\"name\":\"oficina2\"},\"motivo\":{\"id\":\"1\",\"name\":\"motivo 1\"}}', 'no', '2021-07-05 22:13:02', '2021-07-05 22:13:02');
 
 --
 -- Índices para tablas volcadas
@@ -322,6 +394,20 @@ ALTER TABLE `migrations`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_permissions_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
+-- Indices de la tabla `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD PRIMARY KEY (`role_id`,`model_id`,`model_type`),
+  ADD KEY `model_has_roles_model_id_model_type_index` (`model_id`,`model_type`);
+
+--
 -- Indices de la tabla `motivos`
 --
 ALTER TABLE `motivos`
@@ -340,12 +426,33 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indices de la tabla `permissions`
+--
+ALTER TABLE `permissions`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `permissions_name_guard_name_unique` (`name`,`guard_name`);
+
+--
 -- Indices de la tabla `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
+
+--
+-- Indices de la tabla `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `roles_name_guard_name_unique` (`name`,`guard_name`);
+
+--
+-- Indices de la tabla `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD PRIMARY KEY (`permission_id`,`role_id`),
+  ADD KEY `role_has_permissions_role_id_foreign` (`role_id`);
 
 --
 -- Indices de la tabla `sedes`
@@ -393,13 +500,13 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT de la tabla `herramientas`
 --
 ALTER TABLE `herramientas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `motivos`
@@ -411,13 +518,25 @@ ALTER TABLE `motivos`
 -- AUTO_INCREMENT de la tabla `oficinas`
 --
 ALTER TABLE `oficinas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `permissions`
+--
+ALTER TABLE `permissions`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `sedes`
@@ -429,13 +548,36 @@ ALTER TABLE `sedes`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `visitas`
 --
 ALTER TABLE `visitas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+
+--
+-- Restricciones para tablas volcadas
+--
+
+--
+-- Filtros para la tabla `model_has_permissions`
+--
+ALTER TABLE `model_has_permissions`
+  ADD CONSTRAINT `model_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `model_has_roles`
+--
+ALTER TABLE `model_has_roles`
+  ADD CONSTRAINT `model_has_roles_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `role_has_permissions`
+--
+ALTER TABLE `role_has_permissions`
+  ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
