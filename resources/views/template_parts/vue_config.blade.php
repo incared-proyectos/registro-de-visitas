@@ -10,6 +10,8 @@
       <div class="content-wrapper">
           <div id="app">
             <!-- /.content-header -->
+            <modal-profile :asset="'{{ asset('') }}'"></modal-profile>
+
             @yield('content')
           </div>
       </div>

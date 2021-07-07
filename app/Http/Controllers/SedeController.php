@@ -52,7 +52,7 @@ class SedeController extends Controller
         }else{
             $table = new Sede();
             $table->fill($all)->save();
-            return response()->json(['success'=>'Registro actualizado con exito']);
+            return response()->json(['success'=>'Registro agregado con exito']);
         }
     }
 
@@ -98,7 +98,7 @@ class SedeController extends Controller
         }else{
             $table = Sede::find($all['id']);
             $table->fill($all)->save();
-            return response()->json(['success'=>'Registro agregado con exito']);
+            return response()->json(['success'=>'Registro actualizado con exito']);
         }
     }
 

@@ -51,7 +51,7 @@ class OficinaController extends Controller
         }else{
             $table = new Oficina();
             $table->fill($all)->save();
-            return response()->json(['success'=>'Registro actualizado con exito']);
+            return response()->json(['success'=>'Registro agregado con exito']);
         }
     }
 
@@ -97,7 +97,7 @@ class OficinaController extends Controller
         }else{
             $table = Oficina::find($all['id']);
             $table->fill($all)->save();
-            return response()->json(['success'=>'Registro agregado con exito']);
+            return response()->json(['success'=>'Registro actualizado con exito']);
         }
     }
 

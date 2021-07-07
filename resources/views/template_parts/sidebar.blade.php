@@ -8,14 +8,10 @@
   <!-- Sidebar -->
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
-    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-      <div class="image">
-        <img src="{{ asset('img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
-      </div>
-      <div class="info">
-        <a href="#" class="d-block">Alexander Pierce</a>
-      </div>
-    </div>
+
+    <info-profile :asset="'{{ asset('') }}'"></info-profile>
+
+
 
     <!-- SidebarSearch Form -->
     <div class="form-inline">
@@ -87,6 +83,22 @@
               <i class="nav-icon fas fa-user"></i>
               <p>
                 Usuarios
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link  to="/entidad"  class="nav-link">
+              <i class="nav-icon fas fa-id-badge"></i>
+              <p>
+                Entidad
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link  to="/roles"  class="nav-link">
+              <i class="nav-icon fas fa-user-tag"></i>
+              <p>
+                Roles
               </p>
             </router-link>
           </li>

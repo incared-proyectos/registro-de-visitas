@@ -107,8 +107,8 @@
 		props:['form','type'],
 		data: function() {
 	    	return {
-
-	    		entidad:null,
+	    		loading:'',
+	    		entidad:null,	
 	    		motivos:null,
 	    		empleados:null,
 	    		sedes:null,
@@ -116,11 +116,13 @@
 
 	    	}
 	    },
+	  
 	    mounted(){
 			this.getSelects()
 
 		},
 		methods:{
+		
 			async getSelects() {
 			  try {
 			    const response = await axios.get(route('visitas.selects'));
@@ -129,6 +131,7 @@
 			    this.empleados = response.data.empleados;
 			    this.sedes = response.data.sedes;
 			    this.oficinas = response.data.oficinas;
+
 			  } catch (error) {
 			    console.error(error);
 			  }

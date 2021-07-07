@@ -19,6 +19,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+
+//MODULE PERFIL USUARIO
+Route::group(['prefix'=>'perfil','as'=>'perfil.'], function(){
+    Route::get('/', [App\Http\Controllers\PerfilController::class, 'index'])->name('index')->middleware('auth:sanctum');
+    Route::post('/save', [App\Http\Controllers\PerfilController::class, 'store'])->name('save')->middleware('auth:sanctum');
+});
+
+
 //MODULE VISITAS
 Route::group(['prefix'=>'visitas','as'=>'visitas.'], function(){
     Route::get('/', [App\Http\Controllers\VisitaController::class, 'index'])->name('index')->middleware('auth:sanctum');
@@ -44,6 +52,26 @@ Route::group(['prefix'=>'herramientas','as'=>'herramientas.'], function(){
 
 });
 
+//MODULE ENTIDAD 
+Route::group(['prefix'=>'entidad','as'=>'entidad.'], function(){
+    Route::get('/', [App\Http\Controllers\EntidadController::class, 'index'])->name('index')->middleware('auth:sanctum');
+    //POST
+    Route::post('/save', [App\Http\Controllers\EntidadController::class, 'store'])->name('save')->middleware('auth:sanctum');
+
+    Route::post('/update', [App\Http\Controllers\EntidadController::class, 'update'])->name('update')->middleware('auth:sanctum');
+
+    Route::post('/delete', [App\Http\Controllers\EntidadController::class, 'destroy'])->name('delete')->middleware('auth:sanctum');
+
+});
+
+//MODULE ROLES 
+Route::group(['prefix'=>'rol','as'=>'rol.'], function(){
+    Route::get('/', [App\Http\Controllers\RolController::class, 'index'])->name('index')->middleware('auth:sanctum');
+    //POST
+    Route::post('/save', [App\Http\Controllers\RolController::class, 'store'])->name('save')->middleware('auth:sanctum');
+
+    Route::post('/update', [App\Http\Controllers\RolController::class, 'update'])->name('update')->middleware('auth:sanctum');
+});
 
 //MODULE OFICINAS 
 Route::group(['prefix'=>'oficinas','as'=>'oficinas.'], function(){

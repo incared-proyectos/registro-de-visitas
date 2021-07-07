@@ -13,10 +13,6 @@
 	export default {
 		components: {
 	      SectionContent,Visita
-	    },
-	    created(){
-	    	console.log()
 	    }
-
 	}
 </script>

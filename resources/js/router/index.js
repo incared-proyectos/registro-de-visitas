@@ -36,6 +36,22 @@ let routes = [
         }
     },
     {
+        path: '/entidad',
+        component: require('@/pages/Entidad/Index.vue').default,
+        meta: {
+            requiresAuth: true,
+            roleuser:[Role.Administrator]  // de esta forma creamos un nuevo objecto con el rol que vamos a validar para esta vista o los roles
+        }
+    },
+    {
+        path: '/roles',
+        component: require('@/pages/Roles/Index.vue').default,
+        meta: {
+            requiresAuth: true,
+            roleuser:[Role.Administrator]  // de esta forma creamos un nuevo objecto con el rol que vamos a validar para esta vista o los roles
+        }
+    },
+    {
         path: '/visitas',
         component: require('@/pages/App.vue').default,
         meta: {

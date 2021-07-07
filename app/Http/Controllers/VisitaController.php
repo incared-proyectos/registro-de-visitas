@@ -80,7 +80,6 @@ class VisitaController extends Controller
 
         $validator = Validator::make($request->all(),[
             'nombre' => 'required',
-            'dni' => 'required|numeric|unique:visitas',
             'fecha_programada'=>'required',
             'itemsjson' => 'required'
         ],
@@ -205,27 +204,39 @@ class VisitaController extends Controller
            return response()->json(['error'=>$validator->errors()->all()]);
         }else{
             $visita = Visita::find($all['id']);
-            if ($request->has('src_foto')) {
-              if(!Storage::disk('public_uploads')->has('Visitas')){
-                  Storage::disk('public_uploads')->makeDirectory('Visitas');
-              }
-              if (Storage::disk('public_uploads')->exists('Visitas/'.$visita->srcfoto)) {
-                  Storage::disk('public_uploads')->delete('Visitas/'.$visita->srcfoto);
-              }
-                $img = $all['srcfoto'];
-                $img = str_replace('data:image/png;base64,', '', $img);
-                $img = str_replace(' ', '+', $img);
-                $data = base64_decode($img);
-                $im = imagecreatefromstring($data);  //convertir text a imagen
-                if ($im !== false) {
-                    imagejpeg($im, public_path().'/storage/Visitas/'.$all['dni'].time().'.jpg'); //guardar a server 
 
-                    imagedestroy($im); //liberar memoria  
-                    $all['srcfoto'] = $all['dni'].time().'.jpg';
+          
+            if ($request->has('srcfoto')) {
+             
+
+                $img = $all['srcfoto'];
+                //Verificamos que sea una imagen uneva si consigue el comienzo de este texto
+                //Cabe destacar que cuando es una imagen existente no debera aparecer la data:image debido que eso  lo obtenemos del javascript al tomar un capture 
+                if (preg_match("/data:image/i", $img)) {
+
+                    if(!Storage::disk('public_uploads')->has('Visitas')){
+                        Storage::disk('public_uploads')->makeDirectory('Visitas');
+                    }
+                    if (Storage::disk('public_uploads')->exists('Visitas/'.$visita->srcfoto)) {
+                        Storage::disk('public_uploads')->delete('Visitas/'.$visita->srcfoto);
+                    }
+                   
+                    $img = str_replace('data:image/png;base64,', '', $img);
+                    $img = str_replace(' ', '+', $img);
+                    $data = base64_decode($img);
+                    $im = imagecreatefromstring($data);  //convertir text a imagen
+
+                    if ($im !== false) {
+                        imagejpeg($im, public_path().'/storage/Visitas/'.$all['dni'].time().'.jpg'); //guardar a server 
+
+                        imagedestroy($im); //Eliminar imagen en cache para liberar memoria 
+                        $all['srcfoto'] = $all['dni'].time().'.jpg';
+                    }
+                }else{
+                    unset($all['srcfoto']);
                 }
             }
      
-
             //Validamos las fechas progamadas
             if($all['fecha_programada'] > date('Y-m-d')){
                 $all['fecha_programada'] = $all['fecha_programada'];

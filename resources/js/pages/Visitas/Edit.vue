@@ -23,7 +23,7 @@
 					    <errors-form :errors="validationForm"/>
 						<success-message :message="message_success"/>
 
-		              	<form action="" @submit.prevent="saveform">
+		              	<form  @submit.prevent="saveform" id="formContainer">
 		              		<!--Inputs selects y otros en un componente llamado head-form-->
 		              		<head-form 
 			              		:form="form"
@@ -121,10 +121,10 @@
 			    console.error(error);
 			  }
 			},
-			loader(){
+			loader(elementid){
 	    		return this.$loading.show({
                   // Optional parameters
-                  container: this.fullPage ? null : this.$refs.formContainer,
+                  container: this.fullPage ? null : document.getElementById(elementid),
                   canCancel: false,
                   onCancel: this.onCancel,
                 });
@@ -145,7 +145,7 @@
         	},
         
 			saveform(){
-				let loader = this.loader();
+				let loader = this.loader('formContainer');
 	    		let me = this;
 	    		this.form.inputs = this.inputs
 

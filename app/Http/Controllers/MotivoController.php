@@ -52,7 +52,7 @@ class MotivoController extends Controller
         }else{
             $table = new Motivo();
             $table->fill($all)->save();
-            return response()->json(['success'=>'Registro actualizado con exito']);
+            return response()->json(['success'=>'Registro agregado con exito']);
         }
     }
 
@@ -97,7 +97,7 @@ class MotivoController extends Controller
         }else{
             $table = Motivo::find($all['id']);
             $table->fill($all)->save();
-            return response()->json(['success'=>'Registro agregado con exito']);
+            return response()->json(['success'=>'Registro actualizado con exito']);
         }
     }
 

@@ -9,5 +9,13 @@ class Entidad extends Model
 {
     use HasFactory;
     protected $table = 'Entidad';
+    protected $fillable = [
+        'nombres',
+        'apellidos',
+        'nsocial',
+        'identificacion',
+        'direccion',
+
+    ];
 
 }

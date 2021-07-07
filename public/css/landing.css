@@ -1,0 +1,97 @@
+.header-nav{
+	background:white;
+	border-bottom: 1px solid#d9cccc;
+	padding: 30px;
+}
+.logo-nav,.nav-nav{
+}
+.logo-header{
+	width: 150px;
+	height: 40px;
+}
+.link-nav{
+	font-family: 'Raleway', sans-serif;
+	padding:3px;
+	font-size: 13px;
+    font-weight: 700;
+	color: #353232ba;
+}
+
+.section-two{
+	height:500px;
+	background:url('../img/landing/contable4.jpg'); 
+	background-size: 100% 100%;
+}
+.section-medium{
+	font-family: 'Raleway', sans-serif;
+
+}
+.section-three{
+	background:url('../img/landing/contablethre.jpg'); 
+	background-size: 100% 100%;
+
+	height: 300px;
+}
+.letter-text{
+	height: 100%;
+	background: #403a3a69;
+	color:white;
+	font-weight: bold;
+	padding-top: 80px;
+}
+.entry-text{
+	font-family: 'Raleway', sans-serif;
+	font-size: 30px;
+    line-height: 36px;
+    font-weight: 400;
+    color: white;
+    margin: 0 0 16px;
+}
+.text-pert{
+	font-size: 16px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 300;
+}
+.imgl{
+	width: 90%;
+}
+.cort-fart{
+	border: 1px solid #bdb3ccd4;
+	border-radius: 5px;
+	padding: 10px;
+	-webkit-box-shadow: 0px 2px 4px -3px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0px 2px 4px -3px rgba(0,0,0,0.75);
+	box-shadow: 0px 2px 4px -3px rgba(0,0,0,0.75);
+	background: #eaeaea;
+}
+.box-landing-text{
+	font-size: 14px;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 400;
+}
+.cort-fart .ico-head {
+	font-size: 35px;
+	color:green;
+}
+.head-b{
+	text-transform: uppercase;
+	font-style: italic;
+	font-family: 'Raleway', sans-serif;
+	font-weight: 600;
+	color: white;
+}
+ul {
+  list-style: none;
+}
+ul li:before {
+  content: '✓';
+}
+
+footer{
+	height:110px;
+	background: black;
+}
+footer .text-footer{
+	color: white;
+	padding: 40px;
+}
