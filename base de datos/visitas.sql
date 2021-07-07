@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-07-2021 a las 03:49:52
+-- Tiempo de generación: 07-07-2021 a las 03:03:40
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 7.4.13
 
@@ -98,13 +98,6 @@ CREATE TABLE `herramientas` (
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Volcado de datos para la tabla `herramientas`
---
-
-INSERT INTO `herramientas` (`id`, `nombre`, `marca`, `serial`, `visita_id`, `created_at`, `updated_at`) VALUES
-(45, 'laptop', 'dell', 'asdasdasd', 28, '2021-07-05 18:04:37', '2021-07-05 18:04:37');
-
 -- --------------------------------------------------------
 
 --
@@ -178,8 +171,7 @@ CREATE TABLE `motivos` (
 --
 
 INSERT INTO `motivos` (`id`, `motivo`, `created_at`, `updated_at`) VALUES
-(1, 'motivo 1', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'motivo2', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(2, 'motivo23', '0000-00-00 00:00:00', '2021-07-07 00:27:15');
 
 -- --------------------------------------------------------
 
@@ -287,7 +279,7 @@ CREATE TABLE `role_has_permissions` (
 
 CREATE TABLE `sedes` (
   `id` int(11) NOT NULL,
-  `sedes` varchar(100) NOT NULL,
+  `sede` varchar(100) NOT NULL,
   `items_json` text DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
@@ -297,9 +289,9 @@ CREATE TABLE `sedes` (
 -- Volcado de datos para la tabla `sedes`
 --
 
-INSERT INTO `sedes` (`id`, `sedes`, `items_json`, `created_at`, `updated_at`) VALUES
-(1, 'Sede en Principal peru', '', '2021-07-01 20:28:49', '2021-07-01 00:00:00'),
-(2, 'Sede en machu pichu', '', '2021-07-01 20:28:49', '2021-07-01 00:00:00');
+INSERT INTO `sedes` (`id`, `sede`, `items_json`, `created_at`, `updated_at`) VALUES
+(2, 'Sede en machu pichu23', '', '2021-07-01 20:28:49', '2021-07-07 00:39:34'),
+(3, 'Sede en machu pichu', NULL, '2021-07-07 00:38:34', '2021-07-07 00:38:34');
 
 -- --------------------------------------------------------
 
@@ -340,6 +332,7 @@ CREATE TABLE `visitas` (
   `lugar` varchar(100) DEFAULT NULL,
   `fecha` date NOT NULL,
   `fecha_programada` date DEFAULT NULL,
+  `type_visita` tinyint(1) DEFAULT NULL,
   `hora_entrada` varchar(15) DEFAULT NULL,
   `hora_salida` varchar(15) DEFAULT NULL,
   `srcfoto` varchar(50) DEFAULT NULL,
@@ -353,9 +346,9 @@ CREATE TABLE `visitas` (
 -- Volcado de datos para la tabla `visitas`
 --
 
-INSERT INTO `visitas` (`id`, `nombre`, `dni`, `motivo`, `lugar`, `fecha`, `fecha_programada`, `hora_entrada`, `hora_salida`, `srcfoto`, `itemsjson`, `herramientastatus`, `created_at`, `updated_at`) VALUES
-(28, 'asdasd', 465465, NULL, 'asdasd', '2021-07-05', '2021-07-22', '06:04:37 PM', NULL, NULL, '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"1\",\"name\":\"pedro\"},\"sede\":{\"id\":\"1\",\"name\":\"Sede en Principal peru\"},\"oficina\":{\"id\":\"4\",\"name\":\"oficina2\"},\"motivo\":{\"id\":\"1\",\"name\":\"motivo 1\"}}', 'si', '2021-07-05 18:14:02', '2021-07-05 22:14:02'),
-(29, 'Pedro avila', 25129301, NULL, 'asdasd', '2021-07-05', NULL, '06:13:02 PM', NULL, NULL, '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"1\",\"name\":\"pedro\"},\"sede\":{\"id\":\"2\",\"name\":\"Sede en machu pichu\"},\"oficina\":{\"id\":\"4\",\"name\":\"oficina2\"},\"motivo\":{\"id\":\"1\",\"name\":\"motivo 1\"}}', 'no', '2021-07-05 22:13:02', '2021-07-05 22:13:02');
+INSERT INTO `visitas` (`id`, `nombre`, `dni`, `motivo`, `lugar`, `fecha`, `fecha_programada`, `type_visita`, `hora_entrada`, `hora_salida`, `srcfoto`, `itemsjson`, `herramientastatus`, `created_at`, `updated_at`) VALUES
+(32, 'Pedro avila', 5465456465, NULL, 'asdasd', '2021-07-06', '2021-07-06', 1, '12:39:42 AM', NULL, NULL, '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"2\",\"name\":\"Pedro Jose Avila Moreno\"},\"sede\":{\"id\":\"2\",\"name\":\"Sede en machu pichu23\"},\"oficina\":{\"id\":\"4\",\"name\":\"oficina2\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo23\"}}', 'no', '2021-07-07 00:39:42', '2021-07-07 04:39:42'),
+(33, 'Pedro AVila', 254564645, NULL, 'asdasd', '2021-07-06', '2021-07-23', 2, NULL, NULL, NULL, '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"2\",\"name\":\"Pedro Jose Avila Moreno\"},\"sede\":{\"id\":\"2\",\"name\":\"Sede en machu pichu\"},\"oficina\":{\"id\":\"4\",\"name\":\"oficina2\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo2\"}}', 'no', '2021-07-07 01:02:12', '2021-07-07 05:02:12');
 
 --
 -- Índices para tablas volcadas
@@ -542,7 +535,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `sedes`
 --
 ALTER TABLE `sedes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -554,7 +547,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `visitas`
 --
 ALTER TABLE `visitas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Restricciones para tablas volcadas
