@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Entidad extends Model
 {
     use HasFactory;
-    protected $table = 'Entidad';
+    protected $table = 'entidad';
     protected $fillable = [
         'nombres',
         'apellidos',
