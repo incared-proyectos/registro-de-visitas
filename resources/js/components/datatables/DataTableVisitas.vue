@@ -40,6 +40,7 @@
                         data: function (d) {
                             d.fechadesde = vm.$store.getters['fechavisitas/desde']
                             d.fechahasta = vm.$store.getters['fechavisitas/hasta']
+                            d.typevisita = vm.$store.getters['fechavisitas/typeVisitaGet']
                             //$('#uniquename1').val()
                         },
                         dataSrc: "data",
@@ -57,10 +58,7 @@
 
                    columns: this.columns,
                    createdRow(row, data, dataIndex) {
-                    console.log(data.fecha_programada );
-                    if (data.fecha_programada !== null ) {
-                        $(row).css({'background':'#42925b','color':'white'})
-                    }
+                   
                     vm.$emit('created-row',$(row).attr( 'id','codenv'+data.id ));
                    },
                  

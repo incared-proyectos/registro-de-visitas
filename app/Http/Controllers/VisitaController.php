@@ -35,6 +35,11 @@ class VisitaController extends Controller
                 return $row['hora_salida'];
             }
             return 0;
+        })->addColumn('hora_entrada', function($row){
+            if (!empty($row['hora_entrada'])) {
+                return $row['hora_entrada'];
+            }
+            return 0;
         })->addColumn('actionviewimg', function($row){
             if (!empty($row['srcfoto'])) {
                 return $row['srcfoto'];
@@ -68,6 +73,7 @@ class VisitaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
         $all = $request->all();
@@ -75,6 +81,7 @@ class VisitaController extends Controller
         $validator = Validator::make($request->all(),[
             'nombre' => 'required',
             'dni' => 'required|numeric|unique:visitas',
+            'fecha_programada'=>'required',
             'itemsjson' => 'required'
         ],
         [
@@ -103,11 +110,22 @@ class VisitaController extends Controller
                 }
             }
             $all['fecha'] = now();
-            $all['hora_entrada'] = date('h:i:s A');
             $all['itemsjson'] = json_encode($all['itemsjson']);
             $table = new Visita();
-          
-       
+
+            //Validamos las fechas progamadas
+            if(strtotime($all['fecha_programada']) > time()){
+                $all['fecha_programada'] = $all['fecha_programada'];
+                $all['type_visita'] = 2;
+                $typeurl = url('visitaprogramada');
+            }else{
+                $all['hora_entrada'] = date('h:i:s A');
+                $all['type_visita'] = 1;
+                $typeurl = url('visitas');
+            }
+            
+        
+      
 
             $table->fill($all)->save();
             if ($all['herramientastatus'] == 'si') {  
@@ -125,7 +143,7 @@ class VisitaController extends Controller
             }
         
             $request->session()->flash('message_success', 'Registro con el nombre '.$all['nombre'].' agregado con exito!');
-            return response()->json(['success'=>'Registro agregado con exito','url'=>url('visitas')]);
+            return response()->json(['success'=>'Registro agregado con exito','url'=> $typeurl]);
         }
     }
 
@@ -133,9 +151,13 @@ class VisitaController extends Controller
        $datos = $request->all();
        $data = Visita::find($datos['id_data']);
         if (!empty($data)) {
-           $data->hora_salida = date('h:i:s A');
-           $data->save();
-           return response()->json(['success'=>'Visita agregada con exito']);
+            if ($datos['type'] == 'entrada') {
+                $data->hora_entrada = date('h:i:s A');
+            }else{
+                $data->hora_salida = date('h:i:s A');
+            }
+            $data->save();
+            return response()->json(['success'=>'Visita agregada con exito']);
         }
     }
 
@@ -175,7 +197,9 @@ class VisitaController extends Controller
         $validator = Validator::make($request->all(),[
             'nombre' => 'required',
             //'dni' => 'required|numeric|unique:visitas',
-            'itemsjson' => 'required'
+            'itemsjson' => 'required',
+            'fecha_programada'=>'required'
+
         ]);
         if ($validator->fails()) {
            return response()->json(['error'=>$validator->errors()->all()]);
@@ -200,6 +224,18 @@ class VisitaController extends Controller
                     $all['srcfoto'] = $all['dni'].time().'.jpg';
                 }
             }
+     
+
+            //Validamos las fechas progamadas
+            if($all['fecha_programada'] > date('Y-m-d')){
+                $all['fecha_programada'] = $all['fecha_programada'];
+                $all['hora_entrada'] = null;
+                $all['type_visita'] = 2;
+            }else{
+                $all['hora_entrada'] = date('h:i:s A');
+                $all['type_visita'] = 1;
+            }
+
             $visita->fill($all)->save();
             if ($all['herramientastatus'] == 'si') {  
                 if (count($all['inputs']) > 0) {               

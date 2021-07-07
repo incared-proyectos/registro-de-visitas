@@ -64,10 +64,10 @@
   					<option value="">Seleccionar Sede...</option>
   					<option v-for="item in sedes"   
   					:key="item.id" 
-  					:data-name="item.sedes" 
+  					:data-name="item.sede" 
   					:data-id="item.id"
   					:selected="item.id == jsonselects.sede.id">
-  						{{item.sedes}}
+  						{{item.sede}}
   					</option>
   				</select>
   			</div>

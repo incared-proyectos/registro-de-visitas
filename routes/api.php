@@ -57,6 +57,30 @@ Route::group(['prefix'=>'oficinas','as'=>'oficinas.'], function(){
 
 });
 
+//MODULE MOTIVOS 
+Route::group(['prefix'=>'motivos','as'=>'motivos.'], function(){
+    Route::get('/', [App\Http\Controllers\MotivoController::class, 'index'])->name('index')->middleware('auth:sanctum');
+    //POST
+    Route::post('/save', [App\Http\Controllers\MotivoController::class, 'store'])->name('save')->middleware('auth:sanctum');
+
+    Route::post('/update', [App\Http\Controllers\MotivoController::class, 'update'])->name('update')->middleware('auth:sanctum');
+
+    Route::post('/delete', [App\Http\Controllers\MotivoController::class, 'destroy'])->name('delete')->middleware('auth:sanctum');
+
+});
+
+//MODULE SEDES 
+Route::group(['prefix'=>'sedes','as'=>'sedes.'], function(){
+    Route::get('/', [App\Http\Controllers\SedeController::class, 'index'])->name('index')->middleware('auth:sanctum');
+    //POST
+    Route::post('/save', [App\Http\Controllers\SedeController::class, 'store'])->name('save')->middleware('auth:sanctum');
+
+    Route::post('/update', [App\Http\Controllers\SedeController::class, 'update'])->name('update')->middleware('auth:sanctum');
+
+    Route::post('/delete', [App\Http\Controllers\SedeController::class, 'destroy'])->name('delete')->middleware('auth:sanctum');
+
+});
+
 //MODULE USERS 
 Route::group(['prefix'=>'users','as'=>'users.'], function(){
 

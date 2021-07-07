@@ -19,15 +19,25 @@ class Visita extends Model
         'srcfoto',
         'herramientastatus',
         'itemsjson',
-        'fecha_programada'
+        'fecha_programada',
+        'type_visita'
     ];
     /*Map para visitas de este modo sacamos  el nombre de las variables que estan como tipo json, sea entiendad,motivo, oficina,empleados*/
     public function mapvisita($request){
-        $collect =  Visita::all() ; 
+        $collect =  Visita::where('type_visita',$request->input('typevisita'))->get(); 
+
         if (!empty($request->input('fechadesde')) OR !empty($request->input('fechahasta'))) {
             $fechadesde = $request->input('fechadesde');
             $fechahasta = $request->input('fechahasta');
-            $collect = Visita::whereBetween('fecha',array($fechadesde,$fechahasta))->get(); 
+
+
+            if ($request->input('typevisita') == 1) {                // code...
+                $collect = Visita::whereBetween('fecha',array($fechadesde,$fechahasta))->where('type_visita',$request->input('typevisita'))->get();
+            }else{
+                $collect = Visita::whereBetween('fecha_programada',array($fechadesde,$fechahasta))->where('type_visita',$request->input('typevisita'))->get();
+
+            }
+
         }
         $collect->map(function($item, $key) {
             if (!empty($item->itemsjson)) {

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Yajra\Datatables\Datatables;
+use App\Models\Sede;
 
 class SedeController extends Controller
 {
@@ -13,7 +16,11 @@ class SedeController extends Controller
      */
     public function index()
     {
-        //
+        $table = Datatables::of(Sede::all());
+        $table->addColumn('action', function($row){
+            return '';
+        })->rawColumns(['action']);
+        return $table->make(true);
     }
 
     /**
@@ -34,7 +41,19 @@ class SedeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $all = $request->all();
+
+        $validator = Validator::make($request->all(),[
+            'sede' => 'required',
+       
+        ]);
+         if ($validator->fails()) {
+           return response()->json(['error'=>$validator->errors()->all()],422);
+        }else{
+            $table = new Sede();
+            $table->fill($all)->save();
+            return response()->json(['success'=>'Registro actualizado con exito']);
+        }
     }
 
     /**
@@ -66,9 +85,21 @@ class SedeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        $all = $request->all();
+
+        $validator = Validator::make($request->all(),[
+            'sede' => 'required',
+       
+        ]);
+         if ($validator->fails()) {
+           return response()->json(['error'=>$validator->errors()->all()],422);
+        }else{
+            $table = Sede::find($all['id']);
+            $table->fill($all)->save();
+            return response()->json(['success'=>'Registro agregado con exito']);
+        }
     }
 
     /**
@@ -77,8 +108,13 @@ class SedeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+
+        $all = $request->all();
+        $table = Sede::find($all['id_data']);
+        if (!empty($table)) {
+            $table->delete();
+        }
     }
 }

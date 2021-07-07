@@ -11,9 +11,9 @@
 			     	   				<b><i class="fas fa-eye"></i>  <i class="fas fa-plus-square"></i>  Formulario Visita</b>
 			     	   			</div>
 			     	   			<div class="col-6 text-right">
-			     	   				<router-link  to="/visitas" class="text-white">
-				                        <b><i class="fas fa-arrow-alt-circle-left"></i> Volver al listado..</b>
-				                    </router-link>
+			     	   				<a @click="$router.go(-1)" href="#">				                        
+			     	   					<b class="text-white"><i class="fas fa-arrow-alt-circle-left"></i> Atras..</b>
+									</a>
 			     	   			</div>
 			     	   		</div>
 			     	   </div>
@@ -80,7 +80,7 @@
 					lugar:'',
 					herramientastatus:'',
 					srcfoto:null,
-					fecha_programada:null,
+					fecha_programada:moment().format('YYYY/MM/DD'),
 					itemsjson:{
 						entidad:{id:0,name:'-'},
 		    			empleado:{id:0,name:'-'},
@@ -102,7 +102,7 @@
 	    		return this.$loading.show({
                   // Optional parameters
                   container: this.fullPage ? null : this.$refs.formContainer,
-                  canCancel: true,
+                  canCancel: false,
                   onCancel: this.onCancel,
                 });
 	    	},
@@ -131,7 +131,7 @@
 
 			  		me.validationForm = ''
 	    		    me.message_success = response.data.success
-	    		    me.clearform();
+	    		    //me.clearform();
 	    		    location.href = response.data.url
 			    	
 			  	})

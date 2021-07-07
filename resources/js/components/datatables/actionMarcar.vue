@@ -9,7 +9,7 @@
 
 <script>
     export default{
-        props: ['id','url_marcar'],
+        props: ['id','url_marcar','type'],
         methods: {
           marcar(event) {
             //this.$parent.$router.push(this.url_edit)
@@ -27,6 +27,7 @@
               if (result.isConfirmed) {           
                 axios.post(this.url_marcar, {
                   id_data: this.id,
+                  type:this.type
                 }).then((response) => {
                   $('#table_id').DataTable().ajax.reload();
 

@@ -42,8 +42,23 @@
             </p>
           </router-link>
         </li>
+        <!--li :class="{'nav-item':true,' menu-open':$router.history.current.path=='/visitas' || $router.history.current.path=='/visitaprogramada' } ">
+          <a href="#" :class="{'nav-link':true ,'active':$router.history.current.path=='/visitas' || $router.history.current.path=='/visitaprogramada' }">
+            <i class="nav-icon fas fa-eye"></i>
+            <p>
+              Visita Contenido
+              <i class="right fas fa-angle-left"></i>
+            </p>
+          </a>
+          <ul class="nav nav-treeview " :style="{display:$router.history.current.path=='/visitas' || $router.history.current.path=='/visitaprogramada'  ? 'block' : 'none'}">
+            
+            
+    
+          </ul>
+        </li-->
+
         <li class="nav-item">
-          <router-link  to="/visitas"  class="nav-link">
+          <router-link  to="/visitas"  class="nav-link " >
             <i class="nav-icon fas fa-eye"></i>
             <p>
               Visitas
@@ -51,21 +66,48 @@
           </router-link>
         </li>
         <li class="nav-item">
-          <router-link  to="/oficinas"  class="nav-link">
-            <i class="nav-icon fas fa-laptop-house"></i>
+          <router-link  to="/visitaprogramada"  class="nav-link " >
+            <i class="nav-icon fas fa-eye"></i>
             <p>
-              Oficinas
+              Visitas Programadas
             </p>
           </router-link>
         </li>
-        <li class="nav-item">
-          <router-link  to="/users"  class="nav-link">
-            <i class="nav-icon fas fa-user"></i>
-            <p>
-              Usuarios
-            </p>
-          </router-link>
-        </li>
+        @role('Administrator')
+          <li class="nav-item">
+            <router-link  to="/oficinas"  class="nav-link">
+              <i class="nav-icon fas fa-laptop-house"></i>
+              <p>
+                Oficinas
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link  to="/users"  class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                Usuarios
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link  to="/motivos"  class="nav-link">
+              <i class="nav-icon fas fa-bookmark"></i>
+              <p>
+                Motivos
+              </p>
+            </router-link>
+          </li>
+          <li class="nav-item">
+            <router-link  to="/sedes"  class="nav-link">
+              <i class="nav-icon fas fa-building"></i>
+              <p>
+                Sedes
+              </p>
+            </router-link>
+          </li>
+        @endrole
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

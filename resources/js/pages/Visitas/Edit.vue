@@ -10,10 +10,12 @@
 			     	   			<div class="col-6">
 			     	   				<b><i class="fas fa-eye"></i>  <i class="fas fa-plus-square"></i>  Formulario Visita Edicion</b>
 			     	   			</div>
-			     	   			<div class="col-6 text-right">
-			     	   				<router-link  to="/visitas" class="text-white">
-				                        <b><i class="fas fa-arrow-alt-circle-left"></i> Volver al listado..</b>
-				                    </router-link>
+			     	   			<div class="col-6 text-right text-white">
+			     	   				<a @click="$router.go(-1)" href="#">				                        
+			     	   					<b class="text-white"><i class="fas fa-arrow-alt-circle-left"></i> Atras..</b>
+									</a>
+
+			     	   				
 			     	   			</div>
 			     	   		</div>
 			     	   </div>
@@ -88,6 +90,8 @@
 					lugar:'',
 					herramientastatus:'',
 					srcfoto:null,
+					fecha_programada:null,
+
 					itemsjson:{
 						entidad:{id:0,name:'-'},
 		    			empleado:{id:0,name:'-'},

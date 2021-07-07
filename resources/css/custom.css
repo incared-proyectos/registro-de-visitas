@@ -3,6 +3,7 @@
 	font-size: 13px;
 	
 }
+
 label:not(.form-check-label):not(.custom-file-label) {
 	font-weight: 600 !important;
 	font-size: 14px;

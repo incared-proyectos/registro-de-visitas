@@ -18,8 +18,9 @@
             base_path_vue_router = "{{ Config::get('vueconfig.path') }}";
         </script>
     @endif
+
+    <!--BYR-->
     @routes
-    <!-- Scripts -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -41,7 +42,7 @@
 
 
 
-    <!--ROL DEL USUARIO-->
+    <!--ROL BY USER-->
     <script>
       @auth
         window.rolbyuser = "{!! auth()->user()->getRoleNames()[0] !!}";
@@ -52,10 +53,10 @@
     <!--///END///-->
 
     <script src="{{ asset('js/app.js') }}" defer></script>
-      
+
     <script>
-        // Validamos si existe los mensajes de session para cargar en una vista  y si es asi lo mostramos
-        // Esto es un intento para conbinar las session flash de laravel con vuejs al recargar una pagina 
+        // Validamos si existe los mensajes de session para cargar en una vista  y si es asi lo visualizamos
+        // Esto es un intento para combinar las session flash de laravel con vuejs al recargar una pagina 
         if(!!document.getElementById("session_message")){
 
          setTimeout(function(){ document.getElementById("session_message").style.display = "none" }, 5000);

@@ -1,14 +1,14 @@
 <template>
     <div>
         <!-- Modal -->
-        <button  @click="edit" class="btn btn-primary btn-sm "  title="Editar"  >
-            <slot><i class="fas fa-edit"></i></slot>
+        <button   v-if="$can('Administrator') || $can('Seguridad')"@click="edit" class="btn btn-primary btn-sm "  title="Editar"  >
+            <i class="fas fa-edit"></i>
         </button>
-        <button  @click="delete_action" class="btn btn-danger btn-sm "  title="Eliminar"  >
-            <slot><i class="fas fa-trash"></i></slot>
+        <button  v-if="$can('Administrator')" @click="delete_action" class="btn btn-danger btn-sm "  title="Eliminar"  >
+          <i class="fas fa-trash"></i>
         </button>
         <button  @click="viewV" class="btn btn-info btn-sm m-1"   title="Visualizar"  >
-            <slot><i class="fas fa-eye"></i></slot>
+            <i class="fas fa-eye"></i>
         </button>
     </div>
 </template>
