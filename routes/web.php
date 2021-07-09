@@ -19,7 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/pruebas', [App\Http\Controllers\UserController::class, 'pruebas']);
+Route::get('/pruebas', [App\Http\Controllers\UserController::class, 'pruebas'])->name('pruebasweb');
 
 
-Route::get('/{any?}',[App\Http\Controllers\PageController::class, 'index'])->where('any', '.*')->middleware('auth:sanctum');
+Route::get('/{any?}',[App\Http\Controllers\PageController::class, 'index'])->where('any', '.*');

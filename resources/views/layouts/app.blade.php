@@ -44,6 +44,7 @@
 
     <!--ROL BY USER-->
     <script>
+       window.usauh = "{!! !empty(auth()->user()) ? true : false !!}";
       @auth
         window.rolbyuser = "{!! auth()->user()->getRoleNames()[0] !!}";
       @else

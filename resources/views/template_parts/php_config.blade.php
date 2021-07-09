@@ -26,7 +26,7 @@
 </nav>
 <br><br><br>
 <div id="app">
-  <main class="p-5">
+  <main >
     @yield('content')
   </main>
 </div>

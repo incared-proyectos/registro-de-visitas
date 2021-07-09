@@ -52,6 +52,10 @@ let routes = [
         }
     },
     {
+        path: '/visitasP',
+        component: require('@/pages/Visitas/VisitaPublic.vue').default,
+    },
+    {
         path: '/visitas',
         component: require('@/pages/App.vue').default,
         meta: {
@@ -129,15 +133,25 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
 
-    if (typeof to.meta.roleuser !== 'undefined') 
-    {  
-        let rolmeta = to.meta.roleuser;
-        if (!rolmeta.includes(rolbyuser)) {
-            return next({ path: '/404' });
+
+    if (to.matched.some(record => record.meta.requiresAuth)) {
+        if (!usauh) {
+            location.href = route('login')
+            return;
         }
-        next()
+
+        if (to.matched.some(record => record.meta.roleuser)) 
+        {  
+            let rolmeta = to.meta.roleuser;
+            if (!rolmeta.includes(rolbyuser)) {
+                return next({ path: '/404' });
+            }
+            return next()
+        }else{
+            return next()
+        }
     }else{
-        next();
+       return next()
     }
 
 })

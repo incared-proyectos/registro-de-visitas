@@ -27,18 +27,15 @@
 		      	</div>
 		      	<hr>
 		      	<div class="row mt-2">
-		      		<div class="col-4">
+		      		<div class="col-6">
 		      			<label for="">Nombre:</label>
 		      			<input type="text" name="name" class="form-control" :value="user.name">
 		      		</div>
-		      		<div class="col-4">
+		      		<div class="col-6">
 		      			<label for="">Email:</label>
 		      			<input type="text" name="email" class="form-control" :value="user.email">
 		      		</div>
-		      		<div class="col-4">
-		      			<label for="">Password:</label>
-		      			<input type="password" name="password" class="form-control" >
-		      		</div>
+		  
 		      	</div>
 		      
 		      	<hr>

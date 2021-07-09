@@ -30,6 +30,9 @@ Route::group(['prefix'=>'perfil','as'=>'perfil.'], function(){
 //MODULE VISITAS
 Route::group(['prefix'=>'visitas','as'=>'visitas.'], function(){
     Route::get('/', [App\Http\Controllers\VisitaController::class, 'index'])->name('index')->middleware('auth:sanctum');
+
+    Route::get('/public', [App\Http\Controllers\VisitaController::class, 'index'])->name('indexp');
+
     Route::get('/selects', [App\Http\Controllers\VisitaController::class, 'selects'])->name('selects')->middleware('auth:sanctum');
     
     Route::get('/edit/{id}', [App\Http\Controllers\VisitaController::class, 'edit'])->name('edit')->middleware('auth:sanctum');
