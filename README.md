@@ -7,6 +7,25 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## PAQUETES IMPORTANTES
+
+<ul>
+	<li>Tener instalado PHP > 7.3</li>
+	<li>NODEJS</li>
+	<li>COMPOSER</li>
+</ul>
+
+## INSTRUCCIONES
+
+<ul>
+	<li>git clone https://github.com/elyugos/sistema-de-regristro-de-visitas.git</li>
+	<li>composer install</li>
+	<li>cp .env.example .env</li>
+	<li>Configurar base de datos</li>
+	<li>npm install</li>
+	<li>npm run dev</li>
+</ul>
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
