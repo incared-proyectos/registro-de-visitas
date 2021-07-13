@@ -2,7 +2,7 @@
 
 <hr>
 
-## PAQUETES IMPORTANTES
+## PAQUETES IMPORTANTES <g-emoji class="g-emoji" alias="clipboard" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4cb.png">📋</g-emoji>
 
 <ul>
 	<li>Tener instalado PHP > 7.3</li>
@@ -10,16 +10,16 @@
 	<li>COMPOSER</li>
 </ul>
 
-## INSTRUCCIONES
+## INSTRUCCIONES <g-emoji class="g-emoji" alias="wrench" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f527.png">🔧</g-emoji>
 <pre>
-	<ul>
-		<li><b>git clone https://github.com/elyugos/sistema-de-regristro-de-visitas.git</b></li>
-		<li><b>composer install</b></li>
-		<li><b>cp .env.example .env</b></li>
-		<li><b>Configurar base de datos</b></li>
-		<li><b>npm install</b></li>
-		<li><b>npm run dev</b></li>
-	</ul>
+
+		<p><b>git clone https://github.com/elyugos/sistema-de-regristro-de-visitas.git</b></p>
+		<p><b>composer install</b></p>
+		<p><b>cp .env.example .env</b></p>
+		<p><b>Configurar base de datos</b></p>
+		<p><b>npm install</b></p>
+		<p><b>npm run dev</b></p>
+	
 </pre>
 ## License
 
