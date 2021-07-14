@@ -2,8 +2,8 @@
 -- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1
--- Tiempo de generación: 07-07-2021 a las 20:32:45
+-- Servidor: 127.0.0.1:3306
+-- Tiempo de generación: 14-07-2021 a las 05:25:53
 -- Versión del servidor: 10.4.17-MariaDB
 -- Versión de PHP: 7.4.13
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `visitas`
+-- Base de datos: `visitasexample`
 --
 
 -- --------------------------------------------------------
@@ -33,14 +33,6 @@ CREATE TABLE `empleados` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `empleados`
---
-
-INSERT INTO `empleados` (`id`, `empleado`, `created_at`, `updated_at`) VALUES
-(1, 'Pedro', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 'Armando', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -58,13 +50,6 @@ CREATE TABLE `entidad` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `entidad`
---
-
-INSERT INTO `entidad` (`id`, `nombres`, `apellidos`, `nsocial`, `identificacion`, `direccion`, `created_at`, `updated_at`) VALUES
-(1, 'Pedro', 'Avila', 'asdasdasdasdasd3', 251293013, 'asdasdad venezuela', '2021-07-01 20:30:00', '2021-07-07 16:30:50');
 
 -- --------------------------------------------------------
 
@@ -97,13 +82,6 @@ CREATE TABLE `herramientas` (
   `created_at` datetime NOT NULL DEFAULT current_timestamp(),
   `updated_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `herramientas`
---
-
-INSERT INTO `herramientas` (`id`, `nombre`, `marca`, `serial`, `visita_id`, `created_at`, `updated_at`) VALUES
-(46, 'Laptop', 'dell', 'asdasdasdasd', 35, '2021-07-07 17:23:57', '2021-07-07 17:23:57');
 
 -- --------------------------------------------------------
 
@@ -157,9 +135,7 @@ CREATE TABLE `model_has_roles` (
 --
 
 INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
-(1, 'App\\Models\\User', 1),
-(2, 'App\\Models\\User', 2),
-(5, 'App\\Models\\User', 8);
+(1, 'App\\Models\\User', 1);
 
 -- --------------------------------------------------------
 
@@ -174,13 +150,6 @@ CREATE TABLE `motivos` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `motivos`
---
-
-INSERT INTO `motivos` (`id`, `motivo`, `created_at`, `updated_at`) VALUES
-(2, 'motivo23', '0000-00-00 00:00:00', '2021-07-07 00:27:15');
-
 -- --------------------------------------------------------
 
 --
@@ -193,14 +162,6 @@ CREATE TABLE `oficinas` (
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Volcado de datos para la tabla `oficinas`
---
-
-INSERT INTO `oficinas` (`id`, `oficina`, `created_at`, `updated_at`) VALUES
-(3, 'oficina1', '2021-07-01 21:31:58', '2021-07-01 21:31:58'),
-(4, 'oficina2', '2021-07-01 21:31:58', '2021-07-01 21:31:58');
 
 -- --------------------------------------------------------
 
@@ -295,14 +256,6 @@ CREATE TABLE `sedes` (
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Volcado de datos para la tabla `sedes`
---
-
-INSERT INTO `sedes` (`id`, `sede`, `items_json`, `created_at`, `updated_at`) VALUES
-(2, 'Sede en machu pichu23', '', '2021-07-01 20:28:49', '2021-07-07 00:39:34'),
-(3, 'Sede en machu pichu', NULL, '2021-07-07 00:38:34', '2021-07-07 00:38:34');
-
 -- --------------------------------------------------------
 
 --
@@ -326,9 +279,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `img_src`, `created_at`, `updated_at`) VALUES
-(1, 'pedro1', 'pedrojam14@gmail.com', NULL, '$2y$10$WKnnxTrEMg/kfr4yLRp5fOoxMdmaqx4.3ldJkBxFhTzTPUyYC90ni', NULL, 'gOzUZ6pv8GwyPs8a2tVDET38GvKPggCIfsP13VCV.jpg', '2021-07-01 05:07:48', '2021-07-07 22:07:00'),
-(2, 'Pedro Jose Avila Moreno', 'pedrojosavila@gmail.com', NULL, '$2y$10$HBrIIaFKJWEhf1UQg4JiveLyLH2nzKEVECK08x9/tyuZRQdem/dti', NULL, NULL, '2021-07-05 18:51:36', '2021-07-05 18:51:36'),
-(8, 'Pruebas', 'pruebas@gmail.com', NULL, '$2y$10$mf9AN0gVx1Skb/AZTDnNY.tlQ6V1fN5lkrsA9namnVn9p9st4SCum', NULL, NULL, '2021-07-07 22:31:46', '2021-07-07 22:31:46');
+(1, 'admin', 'admin@visitas.com', NULL, '$2y$10$NzIc95slc7EviNvkKcSC3e4jw9iUMP3Opc7xR680h/gB5Ia/DKfHq', NULL, 'h9zFUPC0BUkxXxRejoWuEBid1VTDXHRz0Kmv2C2q.jpg', '2021-07-01 05:07:48', '2021-07-14 07:25:32');
 
 -- --------------------------------------------------------
 
@@ -353,16 +304,6 @@ CREATE TABLE `visitas` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `updated_at` timestamp NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `visitas`
---
-
-INSERT INTO `visitas` (`id`, `nombre`, `dni`, `motivo`, `lugar`, `fecha`, `fecha_programada`, `type_visita`, `hora_entrada`, `hora_salida`, `srcfoto`, `itemsjson`, `herramientastatus`, `created_at`, `updated_at`) VALUES
-(32, 'Pedro avila', 25129301, NULL, 'asdasd', '2021-07-06', '2021-07-06', 1, '05:13:24 PM', NULL, '251293011625678004.jpg', '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"2\",\"name\":\"Pedro Jose Avila Moreno\"},\"sede\":{\"id\":\"2\",\"name\":\"Sede en machu pichu23\"},\"oficina\":{\"id\":\"4\",\"name\":\"oficina2\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo23\"}}', 'no', '2021-07-07 17:13:24', '2021-07-07 21:13:24'),
-(33, 'Pedro AVila', 25129301, NULL, 'asdasd', '2021-07-06', '2021-07-23', 2, NULL, NULL, NULL, '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd\"},\"empleado\":{\"id\":\"2\",\"name\":\"Pedro Jose Avila Moreno\"},\"sede\":{\"id\":\"2\",\"name\":\"Sede en machu pichu\"},\"oficina\":{\"id\":\"4\",\"name\":\"oficina2\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo2\"}}', 'no', '2021-07-07 16:49:38', '2021-07-07 20:49:38'),
-(34, 'Pedro avila', 25129301, NULL, 'asdasd', '2021-07-07', '2021-07-07', 1, '05:23:14 PM', NULL, '251293011625677833.jpg', '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd3\"},\"empleado\":{\"id\":\"1\",\"name\":\"pedro\"},\"sede\":{\"id\":\"2\",\"name\":\"Sede en machu pichu23\"},\"oficina\":{\"id\":\"3\",\"name\":\"oficina1\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo23\"}}', 'no', '2021-07-07 17:23:14', '2021-07-07 21:23:14'),
-(35, 'Pedro Avila', 25129301, NULL, 'asdasdasd', '2021-07-07', '2021-07-31', 2, NULL, NULL, '251293011625678637.jpg', '{\"entidad\":{\"id\":\"1\",\"name\":\"asdasdasdasdasd3\"},\"empleado\":{\"id\":\"2\",\"name\":\"Pedro Jose Avila Moreno\"},\"sede\":{\"id\":\"2\",\"name\":\"Sede en machu pichu23\"},\"oficina\":{\"id\":\"3\",\"name\":\"oficina1\"},\"motivo\":{\"id\":\"2\",\"name\":\"motivo23\"}}', 'si', '2021-07-07 21:23:57', '2021-07-07 21:23:57');
 
 --
 -- Índices para tablas volcadas
@@ -488,13 +429,13 @@ ALTER TABLE `visitas`
 -- AUTO_INCREMENT de la tabla `empleados`
 --
 ALTER TABLE `empleados`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `entidad`
 --
 ALTER TABLE `entidad`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `failed_jobs`
@@ -506,7 +447,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT de la tabla `herramientas`
 --
 ALTER TABLE `herramientas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `migrations`
@@ -518,13 +459,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `motivos`
 --
 ALTER TABLE `motivos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `oficinas`
 --
 ALTER TABLE `oficinas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `permissions`
@@ -548,7 +489,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `sedes`
 --
 ALTER TABLE `sedes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
@@ -560,7 +501,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT de la tabla `visitas`
 --
 ALTER TABLE `visitas`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
