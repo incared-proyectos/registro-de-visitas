@@ -63,7 +63,7 @@
 	<li><b>SANCTUM_STATEFUL_DOMAINS || VALOR PREDETERMINADO "localhost" :</b> Variable importante para sanctum, paquete que usamos para autenticación, debemos colocar nuestra url sin su protocolo ejemplo: example.com </li>
 </ul>
 
-<h2 style="color:red; text-align: center;"><b>contáctenos:</b></h2>
+<h2 style="color:red; text-align: center;"><b>CONTÁCTENOS:</b></h2>
 
 <ul>
 	<li><b>Enlace del sistema</b> LINK  https://incared.net/producto/sistema-de-registro-visitas-proveedores-contratistas-invitados/</li>
