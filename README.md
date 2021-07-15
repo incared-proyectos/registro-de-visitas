@@ -30,17 +30,17 @@
 <h3>Sigue paso a paso nuestras intrucciones para ejecutar correctamente el sistema</h3>
 
 <em>Clonamos el repositorio</em>
-<pre><b>git clone https://github.com/elyugos/sistema-de-regristro-de-visitas.git</b></pre>
+<pre><code><b>git clone https://github.com/elyugos/sistema-de-regristro-de-visitas.git</b></code></pre>
 <em>Instalamos nuestras dependencias con</em>
-<pre><code>composer install</code></pre>
+<pre><code><b>composer install</b></code></pre>
 <em>Realizamos una copia de nuestro archivo .env con el siguiente comando</em>
-<pre><code>cp .env.example .env</code></pre>
+<pre><code><b>cp .env.example .env</b></code></pre>
 <em>Generamos la key para nuestro .env</em>
-<pre><code>php artisan key:generate</code></pre>
+<pre><code><b>php artisan key:generate</b></code></pre>
 <em>Instalamos nuestros paquetes necesarios </em>
-<pre><code>npm install</code></pre>
+<pre><code><b>npm install</b></code></pre>
 <em> Compilamos </em>
-<pre><code>npm run dev</code></pre>
+<pre><code><b>npm run dev</b></code></pre>
 <em> Importar base de datos </em>
 <p>La base de datos esta incluida en la carpeta <b>Base de datos</b></p>
 <h3>Una vez terminemos con los pasos anteriores, procedemos a configurar nuestro archivo .env</h3>
