@@ -13,26 +13,26 @@
         "axios": "^0.21",
         "bootstrap": "^4.6.0",
         "jquery": "^3.6",
-        "laravel-mix": "^6.0.6",
+        "laravel-mix": "^6.0.27",
         "lodash": "^4.17.19",
         "popper.js": "^1.16.1",
-        "postcss": "^8.1.14",
-        "resolve-url-loader": "^3.1.2",
-        "sass": "^1.32.11",
+        "postcss": "^8.3.6",
+        "resolve-url-loader": "^3.1.4",
+        "sass": "^1.37.5",
         "sass-loader": "^11.0.1",
-        "vue": "^2.6.12",
-        "vue-loader": "^15.9.7",
-        "vue-template-compiler": "^2.6.12"
+        "vue": "^2.6.14",
+        "vue-loader": "^15.9.8",
+        "vue-template-compiler": "^2.6.14"
     },
     "dependencies": {
         "@mathieustan/vue-datepicker": "^0.2.11",
         "admin-lte": "^3.1.0",
         "bootstrap-select": "^1.13.18",
         "moment": "^2.29.1",
-        "sweetalert2": "^11.0.18",
+        "sweetalert2": "^11.1.2",
         "vue-loading-overlay": "^3.4.2",
-        "vue-router": "^3.5.1",
-        "vue-select": "^3.11.2",
+        "vue-router": "^3.5.2",
+        "vue-select": "^3.12.2",
         "vuex": "^3.6.2"
     }
 }

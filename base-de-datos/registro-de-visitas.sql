@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 14-07-2021 a las 05:25:53
--- Versión del servidor: 10.4.17-MariaDB
--- Versión de PHP: 7.4.13
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 09-08-2021 a las 01:23:38
+-- Versión del servidor: 10.4.18-MariaDB
+-- Versión de PHP: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de datos: `visitasexample`
+-- Base de datos: `registro-de-visitas`
 --
 
 -- --------------------------------------------------------
@@ -279,7 +279,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `img_src`, `created_at`, `updated_at`) VALUES
-(1, 'admin', 'admin@visitas.com', NULL, '$2y$10$NzIc95slc7EviNvkKcSC3e4jw9iUMP3Opc7xR680h/gB5Ia/DKfHq', NULL, 'h9zFUPC0BUkxXxRejoWuEBid1VTDXHRz0Kmv2C2q.jpg', '2021-07-01 05:07:48', '2021-07-14 07:25:32');
+(1, 'admin', 'admin@incared.net', NULL, '$2y$10$ARcq5PHInUUiO04cJJRpNu/nCD8iHUmJXLKcqusN5a/iGXRi7X7kS', NULL, 'h9zFUPC0BUkxXxRejoWuEBid1VTDXHRz0Kmv2C2q.jpg', '2021-07-01 05:07:48', '2021-08-09 04:22:51');
 
 -- --------------------------------------------------------
 
@@ -495,7 +495,7 @@ ALTER TABLE `sedes`
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT de la tabla `visitas`

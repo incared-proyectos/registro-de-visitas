@@ -21,8 +21,8 @@
 
 <ul>
 	<li><b>PHP >= 7.3</b></li>
-	<li><b>NODEJS:</b> LINK DESCARGA https://nodejs.org/es/</li>
-	<li><b>COMPOSER:</b> LINK DESCARGA https://getcomposer.org/download/</li>
+	<li><b>NODEJS >= 7:</b> LINK DESCARGA https://nodejs.org/es/</li>
+	<li><b>COMPOSER >= 2.0.14</b> LINK DESCARGA https://getcomposer.org/download/ </li>
 </ul>
 
 ## INSTALACIÓN <g-emoji class="g-emoji" alias="wrench" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f527.png">🔧</g-emoji>
@@ -42,8 +42,13 @@
 <em> Compilamos </em>
 <pre><code><b>npm run dev</b></code></pre>
 <em> Importar base de datos </em>
-<p>La base de datos esta incluida en la carpeta <b>Base de datos</b></p>
-<h3>Una vez terminemos con los pasos anteriores, procedemos a configurar nuestro archivo .env</h3>
+<pre><code>La base de datos esta incluida en la carpeta <b>base-de-datos</b></code></pre>
+<h3>Una vez terminemos con los pasos anteriores, procedemos a configurar nuestro archivo .env </h3>
+<pre><code>DB_DATABASE=registro-de-visitas<pre><code>
+<pre><code>DB_USERNAME=root<pre><code>
+<pre><code>DB_PASSWORD="tupassword" <pre><code>
+<h3>Terminada las configuraciones acceder al sistema</h3>
+<pre><code>USUARIO=admin@incared.net</br>CLAVE: 12345678 <pre><code>
 
 <h2 style="color:red; text-align: center;"><b>IMPORTANTE:</b></h2>
 
@@ -57,5 +62,5 @@
 
 <ul>
 	<li><b>Enlace del sistema</b> LINK  https://incared.net/producto/sistema-de-registro-visitas-proveedores-contratistas-invitados/</li>
-	<li><b>Datos de contacto</b> LINK DESCARGA https://incared.net/contactenos/</li>
+	<li><b>Datos de contacto y consultas:</b> LINK DESCARGA https://incared.net/contactenos/</li>
 </ul>
