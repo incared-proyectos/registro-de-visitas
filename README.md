@@ -48,7 +48,8 @@
 <pre><code>DB_USERNAME=root</pre></code>
 <pre><code>DB_PASSWORD="tupassword" </pre></code>
 <h3>Terminada las configuraciones acceder al sistema</h3>
-<pre><code>USUARIO=admin@incared.net</br>CLAVE: 12345678 </pre></code>
+<pre><code>USUARIO=admin@incared.net</br>
+CLAVE: 12345678 </pre></code>
 
 <h2 style="color:red; text-align: center;"><b>IMPORTANTE:</b></h2>
 
