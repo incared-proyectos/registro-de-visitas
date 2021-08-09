@@ -46,7 +46,9 @@
 <h3>Una vez terminemos con los pasos anteriores, procedemos a configurar nuestro archivo .env </h3>
 <pre><code>DB_DATABASE=registro-de-visitas
 DB_USERNAME=root
-DB_PASSWORD="tupassword" </pre></code>
+DB_PASSWORD="tupassword" 
+APP_PATH_LOCAL_VUE=/registro-de-visitas/public/  ###ubicación de la carpeta public
+SANCTUM_STATEFUL_DOMAINS=localhost   ###  nombre del dominio</pre></code>
 <h3>Terminada las configuraciones acceder al sistema</h3>
 <pre><code>USUARIO=admin@incared.net</br>
 CLAVE: 12345678 </pre></code>
@@ -55,7 +57,7 @@ CLAVE: 12345678 </pre></code>
 
 <p>En el archivo .env creamos 2 variables nuevas llamadas: <b>APP_PATH_LOCAL_VUE && SANCTUM_STATEFUL_DOMAINS</b> </p>	
 <ul>
-	<li><b>APP_PATH_LOCAL_VUE || VALOR PREDETERMINADO "VACIO" :</b> Esta variable fue creada para entornos donde no contemos con un servidor o donde no podamos ejecutar el comando "<b>php artisan serve</b>" para que levante nuestro servidor, en esta variable podemos colocar la ruta absoluta en donde se encuentro nuestro public, ejemplo: github/visitas/public, de este modo vuejs apuntara hacia esta ruta. Es opcional</li>
+	<li><b>APP_PATH_LOCAL_VUE || VALOR PREDETERMINADO "VACIO" :</b> Esta variable fue creada para entornos donde no contemos con un servidor o donde no podamos ejecutar el comando "<b>php artisan serve</b>" para que levante nuestro servidor, en esta variable podemos colocar la ruta absoluta en donde se encuentro nuestro public, ejemplo: localhost/registro-de-visitas/public/, de este modo vuejs apuntara hacia esta ruta. Es opcional</li>
 	<li><b>SANCTUM_STATEFUL_DOMAINS || VALOR PREDETERMINADO "localhost" :</b> Variable importante para sanctum, paquete que usamos para autenticación, debemos colocar nuestra url sin su protocolo ejemplo: example.com </li>
 </ul>
 
