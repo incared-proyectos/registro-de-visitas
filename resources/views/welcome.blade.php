@@ -89,7 +89,7 @@
                           <div class="cort-fart">
                             <i class="fas fa-cog ico-head"></i>
                             <hr>
-                            <p class="box-landing-text"><i class="fas fa-atom"></i> Uso de api configurable</p>
+                         <a href="visitasP" target="_blanc" >  <p class="box-landing-text"><i class="fas fa-atom"></i> Registro público de visitas</p></a>
                         </div>
                     </div>
                     <div class="col-3 text-center ">
